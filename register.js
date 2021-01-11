@@ -110,7 +110,7 @@ function register(member) {
         if (data.success == true) {
             $('#alert-message').html(data.error + '<br> Please contact us at info@maaweb.org if you think there is an issue.')
             $('#alert').slideDown();
-            $("#register-button").hide(400);
+            $("#register-button").hide();
         } else {
             $('#alert-message').html(data.error + '<br> Please contact us at info@maaweb.org if you think there is an issue.')
             $('#alert').slideDown();
