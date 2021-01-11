@@ -76,7 +76,7 @@ function register(member) {
         return false;
     }
 
-    if ($("#guardian-name").val() == "" || $("#guardian-phone").val() == "" || $("#guardian-email").val() == ""){
+    if ($("#guardian-info").is(":visible") && ($("#guardian-name").val() == "" || $("#guardian-phone").val() == "" || $("#guardian-email").val() == "")){
         $('#alert-message').html("Please fill in your guardian information." + '<br> Please contact us at info@maaweb.org if you think there is an issue.')
         $('#alert').slideDown();
         return false;
@@ -119,28 +119,6 @@ function register(member) {
         $('#alert-message').html(error.responseJSON.error + '<br> Please contact us at info@maaweb.org if you think there is an issue.')
         $('#alert').slideDown();
     })
-}
-
-function validateProgram() {
-    console.log(formValid())
-    if (!formValid()) {
-        console.log("Form inputs invalid")
-        return false;
-    }
-
-    if (!$("#guardian-terms").is(":checked") && $("#guardian-terms").is(":visible")) {
-        console.log("User must first read and accept the guardian terms.")
-        return false;
-    }
-
-    //   What I want: for every term in the required terms div, verify if it is checked.
-
-    if ($("#terms").is(":checked")) {
-        registerPlayer();
-    } else {
-        console.log("User must first read and accept the waiver.")
-        return false;
-    }
 }
 
 function setup_alerts() {
