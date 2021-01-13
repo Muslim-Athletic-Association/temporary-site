@@ -14,6 +14,7 @@
   max-height: 200px;
   min-height: 200px;
   max-width: 200px;
+  min-width: 200px;
   object-fit: scale-down;
 }
 
@@ -72,7 +73,6 @@
 
 @media (max-width: 992px) {
   .collaborations .nav-link {
-    border: 0;
     padding: 15px;
   }
 }
@@ -80,5 +80,13 @@
 @media (min-width:992px){
   .row{
     flex-wrap: nowrap;
+  }
+}
+
+@media (min-width:992px){
+  .link-mobile{
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
   }
 }
