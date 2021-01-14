@@ -5,6 +5,7 @@ var guardian = false;
 
 $(document).ready(function () {
     hideGuardian();
+    $("#recieve-emails").prop('required', false);
     setup_alerts();
     $("#alert").hide();
     $("#birthday").change(function () {
@@ -82,6 +83,10 @@ function register(member) {
         return false;
     }
 
+    var email_consent = $("#recieve-emails").is(":checked");
+    console.log(email_consent)
+    console.log(toString(email_consent))
+
     $.ajax({
         url: "https://muslimathleticassociation.org:3001/api/registration/temporary/subscribe",
         data: {
@@ -95,7 +100,7 @@ function register(member) {
             payment: 0,
             datetime: new Date().toISOString().slice(0, 19).replace('T', ' '),
             subscription: 1,
-            consent: [{ "given": "true", "purpose": "eats a falafel" }, { "given": "false", "purpose": "cook a potato" }],
+            consent: [{ "given": "true", "purpose": "Yoga Agreement" }, { "given": email_consent, "purpose": "Yoga Sponsor Contact" }],
             guardian: {
                 email: $("#guardian-email").val(),
                 phone: $("#guardian-phone").val(),

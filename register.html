@@ -195,6 +195,7 @@
         <div class="program-register container">
             <div className="section-title">
                 <h4>Registration</h4>
+                <p>Please note that submitting duplicate emails will not record new information. A person's identity will be tied to their email and phone number. All emails must be unique.</p>
             </div>
             <div class="section-title" id="guardian-title">
                 <h2>Personal Information</h2>
@@ -272,7 +273,7 @@
                 </div>
                 <ul>
                     <li class="term">
-                        Since this is a ladies only program, I will not share
+                        Since this program is only for women, I will not share
                         any of the program related material including zoom links and photos with any male individuals.
                     </li>
                     <li class="term">
@@ -286,9 +287,12 @@
                 </ul>
             </div>
             <div class="container terms-sign">
-                <input type="checkbox" class="term-check" id="fuuu" required name="terms">
+                <input type="checkbox" class="term-check" id="agreement" required name="terms">
                 <label for="terms"> I have read and agree to all regulations explicitly
                     mentioned in the section titled "Attendee Agreement".
+                </label>
+                <input type="checkbox" class="term-check" id="recieve-emails" required="false" name="terms" checked="true">
+                <label for="terms"> I would like to recieve updates and offers from MAA and it's sponsors.
                 </label>
             </div>
         </div>
