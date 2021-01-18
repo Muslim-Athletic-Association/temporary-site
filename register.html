@@ -196,6 +196,7 @@
             <div className="section-title">
                 <h4>Registration</h4>
                 <p>Please note that submitting duplicate emails will not record new information. A person's identity will be tied to their email and phone number. All emails must be unique.</p>
+                <div style="display:inline-block; font-size:10px;">Birthday values do not currently work on safari browsers, we will look into the situation.</div>
             </div>
             <div class="section-title" id="guardian-title">
                 <h2>Personal Information</h2>
@@ -226,9 +227,9 @@
                     <div class="validate"></div>
                 </div>
                 <div class="col-lg-4 col-md-6 form-group">
-                    <label>Birthday</label>
+                    <label>Birthday (mm/dd/yyyy)</label>
                     <input type="date" class="form-control mycustominput" name="birthday" id="birthday"
-                        placeholder="Your Birthday" required min="1920-01-01" max='2022-01-01'
+                        placeholder="mm/dd/yyyy" required min="1920-01-01" max='2022-01-01'
                         data-msg="Please enter a valid birthday" />
                     <div class="validate"></div>
                 </div>
