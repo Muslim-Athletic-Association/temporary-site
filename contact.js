@@ -1,3 +1,21 @@
+$(document).ready(function () {
+    setup_alerts();
+    $("#alert").hide();
+
+});
+
+function setup_alerts() {
+    var close = document.getElementsByClassName("closebtn");
+    var i;
+
+    // Loop through all close buttons
+    for (i = 0; i < close.length; i++) {
+        // When someone clicks on a close button
+        close[i].onclick = function () {
+            $('#alert').hide();
+        }
+    }
+}
 
 function contactus() {
     $.ajax({
@@ -12,9 +30,12 @@ function contactus() {
         type: "https"
     }).then((response) => {
         console.log(response)
-        if (response.status == 200) {
+        if (response == 200) {
             console.log("Registration input is valid. User May continue registration.");
-            alert("Thank you for contacting us, we have recieved your message, we will be in contact with you shortly.")
+            // "Thank you for contacting us, we have recieved your message, we will be in contact with you shortly."
+            $('#alert-message').html("Thank you for contacting us, we have recieved your message, we will be in contact with you shortly." + '<br> Please contact us at info@maaweb.org if you think there is an issue.')
+            $('#alert').slideDown();
+            $('#send-message').hide();
         }
     })
 }

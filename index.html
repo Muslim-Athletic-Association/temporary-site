@@ -112,7 +112,7 @@
               <li><i class="icofont-check-circled"></i> Producing positively competitive mindsets. </li>
             </ul>
             <p>
-              These are not easy tasks. <em> It takes a village! </em> We wouldn't exists without the wonderful
+              These are not easy tasks. <em> It takes a village! </em> We wouldn't exist without the wonderful
               community that we serve and belong to.
               Through our programs and events, we wish to be a social get away from negative influences and a gateway to
               positive ones.
@@ -127,35 +127,44 @@
     <section id="contact" class="contact">
       <div class="container" data-aos="fade-up">
 
-          <div class="section-title">
-              <p>Contact Us</p>
-          </div>
-          <p>If you have any questions, comments, or concerns please feel free to contact us.</p>
+        <div class="section-title">
+          <p>Contact Us</p>
+        </div>
+        <p>If you have any questions, comments, or concerns please feel free to contact us.</p>
       </div>
 
       <div class="container" data-aos="fade-up">
-          <div class="form-row">
-              <div class="col-md-6 form-group">
-                  <input a type="text" name="name" class="form-control" id="name" placeholder="Your Name" data-rule="minlen:4" data-msg="Please enter at least 4 chars" />
-                  <div class="validate"></div>
-              </div>
-              <div class="col-md-6 form-group">
-                  <input a type="email" class="form-control" name="email" id="email" placeholder="Your Email" data-rule="email" data-msg="Please enter a valid email" />
-                  <div class="validate"></div>
-              </div>
+        <div class="form-row">
+          <div class="col-md-6 form-group">
+            <input a type="text" name="name" class="form-control" id="name" placeholder="Your Name" data-rule="minlen:4"
+              data-msg="Please enter at least 4 chars" />
+            <div class="validate"></div>
           </div>
-          <div class="form-group">
-              <input a type="text" class="form-control" name="subject" id="subject" placeholder="Subject" data-rule="minlen:4" data-msg="Please enter at least 8 chars of subject" />
-              <div class="validate"></div>
+          <div class="col-md-6 form-group">
+            <input a type="email" class="form-control" name="email" id="email" placeholder="Your Email"
+              data-rule="email" data-msg="Please enter a valid email" />
+            <div class="validate"></div>
           </div>
-          <div class="form-group">
-              <textarea a class="email-contents form-control" name="message" id="message" rows="8" data-rule="required" data-msg="Please write something for us" placeholder="Message"></textarea>
-              <div class="validate"></div>
+        </div>
+        <div class="form-group">
+          <input a type="text" class="form-control" name="subject" id="subject" placeholder="Subject"
+            data-rule="minlen:4" data-msg="Please enter at least 8 chars of subject" />
+          <div class="validate"></div>
+        </div>
+        <div class="form-group">
+          <textarea a class="email-contents form-control" name="message" id="message" rows="8" data-rule="required"
+            data-msg="Please write something for us" placeholder="Message"></textarea>
+          <div class="validate"></div>
+        </div>
+        <div id="send-message" class="text-center"><button class="btn-menu" onclick="contactus()">Send Message</button></div>
+          <div class="alert" id="alert">
+            <span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span>
+            <div id="alert-message"></div>
           </div>
-          <div class="text-center"><button class="btn-menu" onclick="contactus()">Send Message</button></div>
+        </div>
 
       </div>
-  </section><!-- End Contact Section -->
+    </section><!-- End Contact Section -->
 
   </main>
 
@@ -166,7 +175,7 @@
         <div class="justify-content-md-center">
           <div class="footer-info">
             <div class="copyright">
-                <strong><span>Muslim Athletic Association</span></strong>
+              <strong><span>Muslim Athletic Association</span></strong>
             </div>
             <div class="credits">
               <!-- All the links in the footer should remain intact. -->
