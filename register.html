@@ -5,9 +5,9 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="theme-color" content="#000000" />
-    <meta name="description" content="Register for our Yoga Program" />
-    <meta property="og:image" content="assets/masjidCup/Sala.jpeg" />
-    <title>MAA - Register | Ramadan Wellness</title>
+    <meta name="description" content="Register for Ramadan Wellness" />
+    <meta property="og:image" content="assets/masjidCup/Salah.jpeg" />
+    <title>MAA - Register</title>
     <meta content="" name="descriptison">
     <meta content="" name="keywords">
 
@@ -72,10 +72,10 @@
             <div class="row">
                 <div class="col-sm-8">
                     <div>
-                        <h2 class="img-text-subheader">Ramadan Wellness</h2>
+                        <h2 class="img-text-subheader">Ramadan Wellness Registration</h2>
                     </div>
                     <div class="btns">
-                        <a id="register-here" class="btn-menu" href="#register">Register For All Of Our Ramadan Sessions</a>
+                        <a id="register-here" class="btn-menu" href="#register">Register For Ramadan Wellness Here</a>
                     </div>
                     <div class="social-links mt-3">
                         <a href="https://www.facebook.com/muslimathleticassociation" class="facebook"><i
@@ -96,11 +96,10 @@
                     <div class="container col-xs-6" style="margin-bottom: 20px;">
                         <h4>Ramadan Wellness</h4>
                         <br />
-                        <p>Build strength, restore flexibility and de-stress your body and mind
-                            with our Yoga classes. Enjoy them now online, from the comfort
-                            of your own home.</p>
-                        <p>This program caters to women in our community who want to experience yoga classes
-                            at ease. Our classes are female only and do not occur in public or shared settings.
+                        <p>Your wellness is built on a specific lifestyle.
+                            Ramadan acts like a refresh button by allowing us to re-establish good habits.
+                        We target your wellness from an array of areas focusing on physical fitness, mental well being, and nutrition.</p>
+                        <p>This program caters to everyone in our community who wants to make the most of their healthy habits during ramadan.
                         </p>
                         <p>Register now below!
                         </p>
@@ -193,17 +192,17 @@
         <hr>
         <section>
             <div class="container schedule">
-                <p>Classes will be Thursdays from 6-7PM and Sundays from 12-1PM</p>
+                <p>
+                    Every Tuesday – Fitness - Carly
+                    <br>Every Thursday – Fitness – Carly
+                    <br>First Friday (Nutrition) Dr. Maisam
+                    <br>Second Friday (Mental Health & Well Being) Summayah
+                    <br>3rd Friday – Panel Discussion (all instructors/speakers)
+                    <br>Every Sunday – Yoga – Sally & Reem
+                </p>
 
-                <p>January 21st -&nbsp;Flow Yoga with Sally<br>
-                    January 24th - Power Yoga with Reem<br>
-                    January 28th - Flow Yoga with Sally<br>
-                    January 31st&nbsp;- Vinayasa Yoga with Reem<br>
-                    February 4th - Flow Yoga with Sally<br>
-                    February 7th - Yin Restorative Yoga with Reem<br>
-                    <br>
-                    All of our sessions will be live on zoom.</p>
-                    <p>You can receive more information after registration.</p>
+                <p>All of our sessions will be live online.
+                    <br>You can receive more information after registration.</p>
             </div>
         </section>
         <hr>
@@ -250,6 +249,15 @@
                         data-msg="Please enter a valid birthday" />
                     <div class="validate"></div>
                 </div>
+                <div class="col-lg-4 col-md-6 form-group">
+                  <label>Gender</label>
+                  <select type="select" class="form-control mycustominput" name="gender" id="gender" required>
+                    <option value="" disabled selected hidden>Choose a Gender</option>
+                      <option value="Male">Male</option>
+                      <option value="Female">Female</option>
+                    </select>
+                  <div class="validate"></div>
+              </div>
             </div>
         </div>
         <div class="program-register container" id="guardian-info">
@@ -280,7 +288,7 @@
                 <input type="checkbox" class="term-check" required name="guardian-terms">
                 <label for="guardian-terms"> I acknoweledge that the guardian information provided is
                     true and that the guardian has allowed the registrant to participate in any
-                    Muslim Athletic Assocition programs, activities, events, and competitions.
+                    Muslim Athletic Association programs, activities, events, and competitions.
                 </label>
             </div>
         </div>
@@ -291,12 +299,8 @@
                 </div>
                 <ul>
                     <li class="term">
-                        Since this program is only for women, I will not share
-                        any of the program related material including zoom links and photos with any male individuals.
-                    </li>
-                    <li class="term">
-                        I am aware that this online program is currently on a free basis, and will no longer remain free
-                        past February 8th.
+                        I will not share any of the program related material including meeting
+                        links and photos with any individuals without approval from MAA staff.
                     </li>
                     <li class="term">
                         I have read and agree to all stipulations and statements in the <a id="waiver"
@@ -335,7 +339,7 @@
                 <div class="justify-content-md-center">
                     <div class="footer-info">
                         <div class="copyright">
-                            <strong><span>Muslim Athletic Association</span></strong>
+                            <strong><span>© Muslim Athletic Association </span><script>document.write(new Date().getFullYear())</script></strong>
                         </div>
                         <div class="credits">
                             <!-- All the links in the footer should remain intact. -->
@@ -353,10 +357,8 @@
     <!--
       This HTML file is a template.
       If you open it directly in the browser, you will see an empty page.
-
       You can add webfonts, meta tags, or analytics to this file.
       The build step will place the bundled scripts into the <body> tag.
-
       To begin the development, run `npm start` or `yarn start`.
       To create a production bundle, use `npm run build` or `yarn build`.
     -->
@@ -372,7 +374,7 @@
 
     <!-- Template Main JS File -->
     <script src="assets/js/main.js"></script>
-    <script src="./register.js"></script>
+    <script src="./ramadanRegister.js"></script>
 
 </body>
 
