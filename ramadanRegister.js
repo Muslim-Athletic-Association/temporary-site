@@ -97,7 +97,7 @@ function register(member) {
             birthday: $("#birthday").val(),
             gender: $("#gender").val(),
             password: '',
-            // program: "Yoga",
+            program: "Ramadan",
             payment: 0,
             datetime: new Date().toISOString().slice(0, 19).replace('T', ' '),
             subscription: 2,
