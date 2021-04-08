@@ -88,7 +88,7 @@ function register(member) {
     console.log(toString(email_consent))
 
     $.ajax({
-        url: "http://muslimathleticassociation.org:3001/api/registration/temporary/subscribe",
+        url: "https://muslimathleticassociation.org:3001/api/registration/temporary/subscribe",
         data: {
             first_name: $("#first_name").val(),
             last_name: $("#last_name").val(),
