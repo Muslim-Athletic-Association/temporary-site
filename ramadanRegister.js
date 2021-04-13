@@ -8,6 +8,7 @@ $(document).ready(function () {
     $("#recieve-emails").prop('required', false);
     setup_alerts();
     $("#alert").hide();
+    $('#check-alert').hide();
     $("#birthday").change(function () {
         var age = getAge($(this).val());
         if (age < 18) {
@@ -128,6 +129,32 @@ function register(member) {
     })
 }
 
+function checkRegistered(member) {
+
+    var email_consent = $("#recieve-emails").is(":checked");
+    console.log(email_consent)
+    console.log(toString(email_consent))
+
+    $.ajax({
+        url: "http://muslimathleticassociation.org:3001/api/registration/check/" + $("#check-email").val(),
+        type: "GET",
+        dataType: 'text json'
+    }).done((res) => {
+        console.log(res);
+        console.log(res.error);
+        if (res.success == true) {
+            window.location.replace(res.data.zoom_link);
+        } else {
+            $('#check-alert-message').html(data.error + '<br> Please contact us at info@maaweb.org if you think there is an issue.')
+            $('#check-alert').slideDown();
+        }
+    }).catch((error) => {
+        console.log("check failed.", error.responseJSON.error);
+        $('#check-alert-message').html(error.responseJSON.error + '<br> Please contact us at info@maaweb.org if you think there is an issue.')
+        $('#check-alert').slideDown();
+    })
+}
+
 function setup_alerts() {
     var close = document.getElementsByClassName("closebtn");
     var i;
@@ -137,6 +164,7 @@ function setup_alerts() {
         // When someone clicks on a close button
         close[i].onclick = function () {
             $('#alert').hide();
+            $('#check-alert').hide();
         }
     }
 }

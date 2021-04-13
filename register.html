@@ -189,6 +189,26 @@
                 <p>All of our sessions will be live online.
                     <br>You can receive more information after registration.</p>
             </div>
+            <br>
+            <hr>
+            <center>
+            <div class="container">
+                <label>Already registered? Just enter your email to access the sessions at the times mentioned above.</label>
+                <input type="email" class="justify-content-md-center" name="check-email" id="check-email"
+                    placeholder="Registered Email" data-rule="check-email" data-msg="Please enter a valid email">
+                <div class="validate"></div>
+            </div>
+            </center>
+            <br>
+            <div class="text-center">
+                <button class="btn-menu" type="submit" id="check-button" onclick="checkRegistered()">Access Sessions</button>
+            </div>
+            <div class="container">
+                <div class="container check-alert" id="check-alert">
+                    <span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span>
+                    <div id="check-alert-message"></div>
+                </div>
+            </div>
         </section>
         <hr>
         <div class="program-register container">
