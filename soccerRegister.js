@@ -1,21 +1,12 @@
 // This file sends requests and handles dynamic displays for registration
 // import fv from "./formValidation";
 
-var guardian = false;
-
-$(document).ready(function () {
-  hideGuardian();
-  $("#recieve-emails").prop("required", false);
-  setup_alerts();
-  $("#alert").hide();
-  $("#birthday").change(function () {
-    var age = getAge($(this).val());
-    if (age < 18) {
-      showGuardian();
-    } else {
-      hideGuardian();
-    }
-  });
+$(".accordion-header-title").click(function () {
+  if ($(".accordion-header-icon").css("transform") == "none") {
+    $(".accordion-header-icon").css("transform", "rotate(180deg)");
+  } else {
+    $(".accordion-header-icon").css("transform", "");
+  }
 });
 
 function getAge(dateString) {
