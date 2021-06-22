@@ -176,7 +176,7 @@ h6 {
   z-index: 997;
   /* padding: 15px 0; */
   /* top: 40px; */
-  border-bottom: 1px solid #035e7b;
+  border-bottom: 1px solid #294936;
 }
 
 #header .container {
@@ -186,7 +186,7 @@ h6 {
 #header.header-scrolled {
   top: 0;
   /* background: #00235050; */
-  border-bottom: 1px solid #00aeef;
+  border-bottom: 1px solid #294936;
 }
 
 #header .logo {
@@ -232,7 +232,7 @@ h6 {
 .nav-menu button {
   display: block;
   position: relative;
-  color: #035e7b;
+  color: #294936;
   background: none;
   border: none;
   transition: 0.3s;
@@ -361,7 +361,7 @@ h6 {
 }
 
 .mobile-nav-toggle i {
-  color: #035e7b;
+  color: #294936;
 }
 
 .mobile-nav {
@@ -372,7 +372,7 @@ h6 {
   left: 15px;
   z-index: 9999;
   overflow-y: auto;
-  background: #035e7b;
+  background: #294936;
   border: 2px solid rgba(255, 255, 255, 0.1);
   transition: ease-in-out 0.2s;
   opacity: 0;
@@ -561,12 +561,12 @@ h6 {
   line-height: 1;
   color: white;
   border: 0px;
-  /* background: radial-gradient(#035E7B 50%, #035E7B10); */
+  /* background: radial-gradient(#294936 50%, #29493610); */
   background: #002350;
 }
 
 .btn-menu:hover {
-  background: #035e7b;
+  background: #294936;
   color: #fff;
   border-radius: 5px;
 }
@@ -1009,7 +1009,7 @@ input[type="email"] {
   font-size: 18px;
   display: inline-block;
   /* background: #00AEEF; */
-  background: radial-gradient(#035e7b 60%, #035e7b10);
+  background: radial-gradient(#294936 60%, #29493610);
   color: #ffffff;
   line-height: 1;
   padding: 8px;
@@ -1032,7 +1032,7 @@ input[type="email"] {
 #footer .footer-top h4 {
   font-size: 16px;
   font-weight: 600;
-  color: #035e7b;
+  color: #294936;
   position: relative;
   padding-bottom: 12px;
 }
@@ -1132,7 +1132,7 @@ input[type="email"] {
 #footer .credits {
   text-align: center;
   font-size: 13px;
-  color: #035e7b;
+  color: #294936;
 }
 
 /* Added by Osama */
@@ -1193,7 +1193,7 @@ main {
   color: white;
   padding: 12px 30px;
   border-radius: 5px;
-  background: #035e7b;
+  background: #294936;
 }
 
 .terms-sign input {
@@ -1267,4 +1267,7 @@ ul {
 
 .faq{
   margin: 5px 0px;
+}
+.order-2{
+  text-align: center;
 }

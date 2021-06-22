@@ -33,23 +33,23 @@
   transition: 0.3s;
   color: #000;
   border-radius: 0;
-  border-right: 2px solid #035e7b;
+  border-right: 2px solid #294936;
   font-weight: 600;
   font-size: 10px;
 }
 
 .collaborations .nav-link:hover {
-  color: #035e7b;
+  color: #294936;
 }
 
 .collaborations .nav-link.active {
   color: #fff;
-  background: #035e7b;
-  border-color: #035e7b;
+  background: #294936;
+  border-color: #294936;
 }
 
 .collaborations .nav-link:hover {
-  border-color: #035e7b;
+  border-color: #294936;
 }
 
 .collaborations .tab-pane.active {
@@ -116,7 +116,15 @@
   transition: 0.3s;
 }
 
-.accordion-header-icon.clicked {
-  transform: rotate(180deg);
-  transition: 1s;
+.instruction, .instruction h2{
+  font-size: 14px;
+  font-weight: 500;
+  line-height: normal;
+  margin: 0 0 5px 0;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: #aaaaaa;
+  font-family: "Poppins", sans-serif;
+  width: 100%;
+  padding: 0px 3px;
 }
