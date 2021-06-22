@@ -128,3 +128,23 @@
   width: 100%;
   padding: 0px 3px;
 }
+
+#team-creation{
+  /* display: none; */
+  text-align: center;
+  vertical-align: center;
+  width: 100%;
+}
+
+.single-input{
+  display: none;
+  text-align: center;
+  vertical-align: center;
+  width: 100%;
+}
+
+.single-input .form-control{
+  margin: auto;
+  width: 40vh;
+  margin-bottom: 10px;
+}
