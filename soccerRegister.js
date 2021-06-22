@@ -182,7 +182,7 @@ function setup_alerts() {
 
 function errorSlide(eDivName, eMessageDiv, errorMessage) {
     $(eMessageDiv).html(
-        data.error +
+        errorMessage +
             "<br> Please contact us at info@maaweb.org if you think there is an issue."
     );
     $(eDivName).slideDown();
@@ -198,16 +198,6 @@ async function createCaptainAccount() {
     let person;
     console.log(email, password);
 
-    let personBody = {
-        email,
-        password,
-        first_name,
-        last_name,
-        phone,
-        birthday,
-        gender: "male",
-    };
-
     await fetch("http://offlineQuran.com:3001/api/addPerson", {
         method: "POST",
         headers: {
@@ -215,7 +205,12 @@ async function createCaptainAccount() {
             "Content-Type": "application/json",
         },
         body: JSON.stringify({
-            personBody,
+            email: email,
+            first_name: first_name,
+            last_name: last_name,
+            phone: phone,
+            birthday: birthday,
+            gender: "male",
         }),
     }).then((result) => {
         result.success
@@ -223,7 +218,7 @@ async function createCaptainAccount() {
             : errorSlide(
                   "captain-alert",
                   "#captain-alert-message",
-                  errorMessage
+                  result.error
               );
     });
 }
@@ -234,7 +229,7 @@ async function createFirebaseAccount(email, password) {
         .createUserWithEmailAndPassword(email, password)
         .then((userCredential) => {
             // Signed in
-            console.log(userCredential)
+            console.log(userCredential);
             var user = userCredential.user;
         })
         .catch((error) => {
