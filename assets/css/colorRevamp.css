@@ -40,7 +40,7 @@ body {
   text-decoration: none;
   color: white;
   padding: 10px;
-  border-radius: 5px;
+  border-radius: 3px;
   background: #002350;
 }
 
@@ -1197,11 +1197,11 @@ main {
 }
 
 .terms-sign input {
-  display: block;
+  display: inline-block;
 }
 
 .terms-sign label {
-  display: block;
+  display: inline-block;
 }
 
 .float-clear {
@@ -1209,7 +1209,7 @@ main {
 }
 
 .terms-sign {
-  padding: 5px;
+  padding: 5px 0px;
 }
 
 .custom_alert {
