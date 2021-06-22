@@ -101,17 +101,12 @@
 }
 
 .accordion-item {
-  max-width: 90%;
   border-bottom: 1px solid rgb(204, 203, 203);
 }
 
 .btn-faq {
   outline: none;
   text-align: left;
-}
-
-.accordion-header-title {
-  /* display: inline-block; */
 }
 
 .accordion-header-icon {

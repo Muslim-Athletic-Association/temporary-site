@@ -41,7 +41,7 @@ body {
   color: white;
   padding: 10px;
   border-radius: 5px;
-  background: #035e7b;
+  background: #002350;
 }
 
 button:hover {
@@ -501,8 +501,8 @@ h6 {
 --------------------------------------------------------------*/
 #hero {
   width: 100%;
-  height: 100vh;
-  background: url("../img/masjidCup/Salah.jpeg") top center;
+  height: 75vh;
+  background: url("../img/masjidCup/salah_cut.jpg") top center;
   background-size: cover;
   position: relative;
   padding: 0;
@@ -818,6 +818,16 @@ section {
   background-size: cover;
   position: relative;
   height: 100vh;
+}
+
+.soccer-hero {
+  margin-top: 80px;
+  margin-bottom: 20px;
+  background: url("../img/mensSoccer/Corner.jpg") center center;
+  background-size: cover;
+  position: relative;
+  height: 75vh;
+  border-bottom: solid 0.5px #000000;
 }
 
 .got-your-back:before {
@@ -1253,4 +1263,8 @@ ul .term::before {
 
 ul {
   list-style: none;
+}
+
+.faq{
+  margin: 5px 0px;
 }
