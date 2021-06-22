@@ -198,29 +198,36 @@ async function createCaptainAccount() {
     let person;
     console.log(email, password);
 
-    await fetch("http://offlineQuran.com:3001/api/addPerson", {
-        method: "POST",
-        headers: {
-            Accept: "application/json",
-            "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
+    $.ajax({
+        url: "http://offlineQuran.com:3001/api/addPerson",
+        data: {
             email: email,
             first_name: first_name,
             last_name: last_name,
             phone: phone,
             birthday: birthday,
             gender: "male",
-        }),
-    }).then((result) => {
-        result.success
-            ? createFirebaseAccount(email, password)
-            : errorSlide(
-                  "captain-alert",
-                  "#captain-alert-message",
-                  result.error
-              );
-    });
+        },
+        type: "POST",
+        dataType: "text json",
+    })
+        .done((result) => {
+            if (result.success) {
+              console.log("success", result)
+                createFirebaseAccount(email, password);
+            } else {
+              console.log("error", result)
+                errorSlide(
+                    "captain-alert",
+                    "#captain-alert-message",
+                    result.error
+                );
+            }
+        })
+        .catch((result) => {
+            console.log(result);
+            errorSlide("captain-alert", "#captain-alert-message", result.error);
+        });
 }
 
 async function createFirebaseAccount(email, password) {
