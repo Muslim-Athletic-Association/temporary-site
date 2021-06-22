@@ -121,44 +121,44 @@
             <br>
             <div class="col-lg-4 col-md-6 form-group">
                 <label>First Name</label>
-                <input type="text" name="first_name" class="form-control" id="first_name"
+                <input type="text" name="captain-first_name" class="form-control" id="captain-first_name"
                     placeholder="Your First Name" data-rule="minlen:1" data-msg="Please enter at least 1 chars" />
                 <div class="validate"></div>
             </div>
             <div class="col-lg-4 col-md-6 form-group">
                 <label>Last Name</label>
-                <input type="text" name="last_name" class="form-control" id="last_name" placeholder="Your Last Name"
+                <input type="text" name="last_name" class="form-control" id="captain-last_name" placeholder="Your Last Name"
                     data-rule="minlen:1" data-msg="Please enter at least 1 chars" />
                 <div class="validate"></div>
             </div>
             <div class="col-lg-4 col-md-6 form-group">
                 <label>Email</label>
-                <input type="email" class="form-control" name="email" id="email" placeholder="Your Email"
+                <input type="email" class="form-control" name="captain-email" id="captain-email" placeholder="Your Email"
                     data-rule="email" data-msg="Please enter a valid email" />
                 <div class="validate"></div>
             </div>
             <div class="col-lg-4 col-md-6 form-group">
                 <label>Phone</label>
-                <input type="text" class="form-control" name="phone" id="phone" placeholder="Your Phone"
+                <input type="text" class="form-control" name="captain-phone" id="captain-phone" placeholder="Your Phone"
                     data-rule="minlen:10" data-msg="Please enter a valid phone number" />
                 <div class="validate"></div>
             </div>
             <div class="col-lg-4 col-md-6 form-group">
                 <label>Birthday (mm/dd/yyyy)</label>
-                <input type="date" class="form-control mycustominput" name="birthday" id="birthday"
+                <input type="date" class="form-control mycustominput" name="captain-birthday" id="captain-birthday"
                     placeholder="mm/dd/yyyy" required min="1920-01-01" max='2022-01-01'
                     data-msg="Please enter a valid birthday" />
                 <div class="validate"></div>
             </div>
             <div class="col-lg-4 col-md-6 form-group">
                 <label>Password</label>
-                <input type="email" class="form-control" name="email" id="email" placeholder="Your Email"
+                <input type="email" class="form-control" name="captain-password" id="captain-password" placeholder="Enter a password"
                     data-rule="email" data-msg="Please enter a valid email" />
                 <div class="validate"></div>
             </div>
     
     <div class="text-center container">
-        <button class="btn-menu" type="submit" id="register-button" onclick="createAccount()">Create an account</button>
+        <button class="btn-menu" type="submit" id="register-button" onclick="createCaptainAccount()">Create an account</button>
     </div>
         </div>
 
@@ -214,9 +214,9 @@
                   </div>
                 </div>
                 <div class="container">
-                  <div class="container alert" id="alert">
+                  <div class="container captain-alert" id="captain-alert">
                     <span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span>
-                    <div id="alert-message"></div>
+                    <div id="captain-alert-message"></div>
                   </div>
                 </div>
               </div>
