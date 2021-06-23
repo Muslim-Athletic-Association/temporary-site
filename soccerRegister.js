@@ -240,6 +240,7 @@ async function createCaptainAccount() {
             console.log(result);
             if (result.responseJSON.ecode == 1) {
                 createFirebaseAccount(email, password);
+                return
             }
             errorSlide(
                 "#captain-alert",
@@ -354,13 +355,14 @@ function createTeam() {
             team_name: team,
             subscription: 1,
             team_capacity: 12,
+            datetime: Date.now()
         },
         type: "POST",
         dataType: "text json",
     })
         .done((result) => {
             console.log(result);
-            $("#register-team-button").hide();
+            $("#register-team-button").slideUp();
             errorSlide(
                 "#captain-alert",
                 "#captain-alert-message",
