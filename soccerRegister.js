@@ -238,6 +238,9 @@ async function createCaptainAccount() {
         })
         .catch((result) => {
             console.log(result);
+            if (result.responseJSON.ecode == 1) {
+                createFirebaseAccount(email, password);
+            }
             errorSlide(
                 "#captain-alert",
                 "#captain-alert-message",
