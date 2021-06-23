@@ -225,6 +225,8 @@ async function createCaptainAccount() {
             if (result.success) {
                 console.log("success", result);
                 createFirebaseAccount(email, password);
+            } else if (result.ecode == 1) {
+                createFirebaseAccount(email, password);
             } else {
                 console.log("error", result);
                 errorSlide(
@@ -253,18 +255,21 @@ async function createFirebaseAccount(email, password) {
             var user = userCredential.user;
             return user.getIdToken().then((idToken) => {
                 console.log(idToken);
-                return fetch("https://muslimathleticassociation.org:3001/api/login", {
-                    method: "POST",
-                    headers: {
-                        Accept: "application/json",
-                        "Content-Type": "application/json",
-                    },
-                    credentials: "include",
-                    body: JSON.stringify({
-                        idToken,
-                        email: email,
-                    }),
-                }).then(() => {
+                return fetch(
+                    "https://muslimathleticassociation.org:3001/api/login",
+                    {
+                        method: "POST",
+                        headers: {
+                            Accept: "application/json",
+                            "Content-Type": "application/json",
+                        },
+                        credentials: "include",
+                        body: JSON.stringify({
+                            idToken,
+                            email: email,
+                        }),
+                    }
+                ).then(() => {
                     $("#create-captain-account").hide();
                     $(".create-team").show();
                 });
@@ -278,6 +283,9 @@ async function createFirebaseAccount(email, password) {
             var errorMessage = error.message;
             console.log(errorCode);
             console.log(errorMessage);
+            if (error.code == "auth/email-already-exists") {
+                login(email, password);
+            }
             errorSlide(
                 "#captain-alert",
                 "#captain-alert-message",
@@ -293,18 +301,21 @@ async function login(email, password) {
         .then(({ user }) => {
             return user.getIdToken().then((idToken) => {
                 console.log(idToken);
-                return fetch("https://muslimathleticassociation.org:3001/api/login", {
-                    method: "POST",
-                    headers: {
-                        Accept: "application/json",
-                        "Content-Type": "application/json",
-                    },
-                    credentials: "include",
-                    body: JSON.stringify({
-                        idToken,
-                        email: email,
-                    }),
-                }).then(() => {
+                return fetch(
+                    "https://muslimathleticassociation.org:3001/api/login",
+                    {
+                        method: "POST",
+                        headers: {
+                            Accept: "application/json",
+                            "Content-Type": "application/json",
+                        },
+                        credentials: "include",
+                        body: JSON.stringify({
+                            idToken,
+                            email: email,
+                        }),
+                    }
+                ).then(() => {
                     $("#create-captain-account").hide();
                     $(".create-team").show();
                 });
