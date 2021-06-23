@@ -264,6 +264,7 @@ async function login(email, password) {
                     credentials: "include",
                     body: JSON.stringify({
                         idToken,
+                        email: email,
                     }),
                 }).then(() => {
                     $("#create-captain-account").hide();
@@ -281,43 +282,43 @@ async function login(email, password) {
 }
 
 function createTeam() {
-  let cookies = getCookieValues();
-  console.log(cookies)
-  
-  // $.ajax({
-  //       url: "http://offlinequran.com:3001/api/team/create",
-  //       data: {
-  //           person: p,
-  //       },
-  //       type: "POST",
-  //       dataType: "text json",
-  //   })
-  //       .done((result) => {
-  //           if (result.success) {
-  //               console.log("success", result);
-  //               createFirebaseAccount(email, password);
-  //           } else {
-  //               console.log("error", result);
-  //               errorSlide(
-  //                   "captain-alert",
-  //                   "#captain-alert-message",
-  //                   result.error
-  //               );
-  //           }
-  //       })
-  //       .catch((result) => {
-  //           console.log(result);
-  //           errorSlide("captain-alert", "#captain-alert-message", result.error);
-  //       });
+    let cookies = getCookieValues();
+    console.log(cookies);
+    let p = cookies.person_id;
+    $.ajax({
+        url: "http://offlinequran.com:3001/api/team/create",
+        data: {
+            person: p,
+            team_name: $("#team-name").val(),
+        },
+        type: "POST",
+        dataType: "text json",
+    })
+        .done((result) => {
+            if (result.success) {
+                console.log("success", result);
+                createFirebaseAccount(email, password);
+            } else {
+                console.log("error", result);
+                errorSlide(
+                    "captain-alert",
+                    "#captain-alert-message",
+                    result.error
+                );
+            }
+        })
+        .catch((result) => {
+            console.log(result);
+            errorSlide("captain-alert", "#captain-alert-message", result.error);
+        });
 }
 
-
 function getCookieValues() {
-  str = document.cookie.split(', ');
-  var result = {};
-  for (var i = 0; i < str.length; i++) {
-      var cur = str[i].split('=');
-      result[cur[0]] = cur[1];
-  }
-  return result;
+    str = document.cookie.split("; ");
+    var result = {};
+    for (var i = 0; i < str.length; i++) {
+        var cur = str[i].split("=");
+        result[cur[0]] = cur[1];
+    }
+    return result;
 }
