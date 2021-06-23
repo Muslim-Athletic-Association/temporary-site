@@ -235,9 +235,9 @@ async function createFirebaseAccount(email, password) {
         .auth()
         .createUserWithEmailAndPassword(email, password)
         .then((userCredential) => {
-            // Signed in
             console.log(userCredential);
             var user = userCredential.user;
+            login(email, password)
         })
         .catch((error) => {
             var errorCode = error.code;
@@ -265,6 +265,9 @@ async function login(email, password) {
                     body: JSON.stringify({
                         idToken,
                     }),
+                }).then(()=>{
+                  $("#create-captain-account").hide();
+                  $("#create-team").show();
                 });
             });
         })
@@ -273,6 +276,6 @@ async function login(email, password) {
         })
         .catch((err) => {
             console.log(err.message);
-            errorSlide("captain-alert", "#captain-alert-message", errorMessage);
+            errorSlide("captain-alert", "#captain-alert-message", err.message);
         });
 }
