@@ -213,10 +213,10 @@ async function createCaptainAccount() {
     })
         .done((result) => {
             if (result.success) {
-              console.log("success", result)
+                console.log("success", result);
                 createFirebaseAccount(email, password);
             } else {
-              console.log("error", result)
+                console.log("error", result);
                 errorSlide(
                     "captain-alert",
                     "#captain-alert-message",
@@ -237,7 +237,7 @@ async function createFirebaseAccount(email, password) {
         .then((userCredential) => {
             console.log(userCredential);
             var user = userCredential.user;
-            login(email, password)
+            login(email, password);
         })
         .catch((error) => {
             var errorCode = error.code;
@@ -265,9 +265,9 @@ async function login(email, password) {
                     body: JSON.stringify({
                         idToken,
                     }),
-                }).then(()=>{
-                  $("#create-captain-account").hide();
-                  $("#create-team").show();
+                }).then(() => {
+                    $("#create-captain-account").hide();
+                    $(".create-team").show();
                 });
             });
         })
@@ -278,4 +278,46 @@ async function login(email, password) {
             console.log(err.message);
             errorSlide("captain-alert", "#captain-alert-message", err.message);
         });
+}
+
+function createTeam() {
+  let cookies = getCookieValues();
+  console.log(cookies)
+  
+  // $.ajax({
+  //       url: "http://offlinequran.com:3001/api/team/create",
+  //       data: {
+  //           person: p,
+  //       },
+  //       type: "POST",
+  //       dataType: "text json",
+  //   })
+  //       .done((result) => {
+  //           if (result.success) {
+  //               console.log("success", result);
+  //               createFirebaseAccount(email, password);
+  //           } else {
+  //               console.log("error", result);
+  //               errorSlide(
+  //                   "captain-alert",
+  //                   "#captain-alert-message",
+  //                   result.error
+  //               );
+  //           }
+  //       })
+  //       .catch((result) => {
+  //           console.log(result);
+  //           errorSlide("captain-alert", "#captain-alert-message", result.error);
+  //       });
+}
+
+
+function getCookieValues() {
+  str = document.cookie.split(', ');
+  var result = {};
+  for (var i = 0; i < str.length; i++) {
+      var cur = str[i].split('=');
+      result[cur[0]] = cur[1];
+  }
+  return result;
 }
