@@ -288,6 +288,7 @@ async function createFirebaseAccount(email, password) {
             console.log(errorMessage);
             if (error.code == "auth/email-already-exists") {
                 login(email, password);
+                return
             }
             errorSlide(
                 "#captain-alert",
