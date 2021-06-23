@@ -290,6 +290,7 @@ function createTeam() {
         data: {
             person: p,
             team_name: $("#team-name").val(),
+            team_capacity: 12,
         },
         type: "POST",
         dataType: "text json",
