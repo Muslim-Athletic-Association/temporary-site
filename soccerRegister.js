@@ -237,7 +237,27 @@ async function createFirebaseAccount(email, password) {
         .then((userCredential) => {
             console.log(userCredential);
             var user = userCredential.user;
-            login(email, password);
+            return user.getIdToken().then((idToken) => {
+                console.log(idToken);
+                return fetch("http://offlineQuran.com:3001/api/login", {
+                    method: "POST",
+                    headers: {
+                        Accept: "application/json",
+                        "Content-Type": "application/json",
+                    },
+                    credentials: "include",
+                    body: JSON.stringify({
+                        idToken,
+                        email: email,
+                    }),
+                }).then(() => {
+                    $("#create-captain-account").hide();
+                    $(".create-team").show();
+                });
+            });
+        })
+        .then(() => {
+            return firebase.auth().signOut();
         })
         .catch((error) => {
             var errorCode = error.code;
