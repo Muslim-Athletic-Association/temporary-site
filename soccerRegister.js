@@ -209,7 +209,7 @@ async function createCaptainAccount() {
     console.log(email, password);
 
     $.ajax({
-        url: "http://offlineQuran.com:3001/api/addPerson",
+        url: "http://muslimathleticassociation.org.com:3001/api/addPerson",
         data: {
             email: email,
             first_name: first_name,
@@ -253,7 +253,7 @@ async function createFirebaseAccount(email, password) {
             var user = userCredential.user;
             return user.getIdToken().then((idToken) => {
                 console.log(idToken);
-                return fetch("http://offlineQuran.com:3001/api/login", {
+                return fetch("http://muslimathleticassociation.org.com:3001/api/login", {
                     method: "POST",
                     headers: {
                         Accept: "application/json",
@@ -293,7 +293,7 @@ async function login(email, password) {
         .then(({ user }) => {
             return user.getIdToken().then((idToken) => {
                 console.log(idToken);
-                return fetch("http://offlineQuran.com:3001/api/login", {
+                return fetch("http://muslimathleticassociation.org.com:3001/api/login", {
                     method: "POST",
                     headers: {
                         Accept: "application/json",
@@ -333,7 +333,7 @@ function createTeam() {
         return;
     }
     $.ajax({
-        url: "http://offlinequran.com:3001/api/team/create",
+        url: "http://muslimathleticassociation.org.com:3001/api/team/create",
         data: {
             person: p,
             team_name: team,
