@@ -196,6 +196,16 @@ async function createCaptainAccount() {
     const phone = $("#captain-phone").val();
     const birthday = $("#captain-birthday").val();
     let person;
+
+    if (password.length < 8) {
+        errorSlide(
+            "#captain-alert",
+            "#captain-alert-message",
+            "Password must be atleast 8 characters long"
+        );
+        return;
+    }
+
     console.log(email, password);
 
     $.ajax({
@@ -229,7 +239,7 @@ async function createCaptainAccount() {
             errorSlide(
                 "#captain-alert",
                 "#captain-alert-message",
-                result.error
+                result.responseJSON.error
             );
         });
 }
@@ -311,20 +321,30 @@ async function login(email, password) {
 
 function createTeam() {
     let cookies = getCookieValues();
+    const team = $("#team-name").val();
     console.log(cookies);
     let p = cookies.person_id;
+    if (team.length < 8) {
+        errorSlide(
+            "#captain-alert",
+            "#captain-alert-message",
+            "Password must be atleast 8 characters long"
+        );
+        return;
+    }
     $.ajax({
         url: "http://offlinequran.com:3001/api/team/create",
         data: {
             person: p,
-            team_name: $("#team-name").val(),
+            team_name: team,
             team_capacity: 12,
         },
         type: "POST",
         dataType: "text json",
     })
         .done((result) => {
-            console.log("error", result);
+            console.log(result);
+            $("#register-team-button").hide();
             errorSlide(
                 "#captain-alert",
                 "#captain-alert-message",
