@@ -296,17 +296,8 @@ function createTeam() {
         dataType: "text json",
     })
         .done((result) => {
-            if (result.success) {
-                console.log("success", result);
-                createFirebaseAccount(email, password);
-            } else {
-                console.log("error", result);
-                errorSlide(
-                    "captain-alert",
-                    "#captain-alert-message",
-                    result.error
-                );
-            }
+            console.log("error", result);
+            errorSlide("captain-alert", "#captain-alert-message", result.error);
         })
         .catch((result) => {
             console.log(result);
