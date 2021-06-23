@@ -240,7 +240,7 @@ async function createCaptainAccount() {
             console.log(result);
             if (result.responseJSON.ecode == 1) {
                 createFirebaseAccount(email, password);
-                return
+                return;
             }
             errorSlide(
                 "#captain-alert",
@@ -276,6 +276,7 @@ async function createFirebaseAccount(email, password) {
                 ).then(() => {
                     $("#create-captain-account").hide();
                     $(".create-team").show();
+                    $("#captain-alert").hide();
                 });
             });
         })
@@ -289,7 +290,7 @@ async function createFirebaseAccount(email, password) {
             console.log(errorMessage);
             if (error.code == "auth/email-already-in-use") {
                 login(email, password);
-                return
+                return;
             }
             errorSlide(
                 "#captain-alert",
@@ -323,6 +324,7 @@ async function login(email, password) {
                 ).then(() => {
                     $("#create-captain-account").hide();
                     $(".create-team").show();
+                    $("#captain-alert").hide();
                 });
             });
         })
@@ -355,7 +357,7 @@ function createTeam() {
             team_name: team,
             subscription: 1,
             team_capacity: 12,
-            datetime: Date.now()
+            datetime: Date.now(),
         },
         type: "POST",
         dataType: "text json",
@@ -374,7 +376,7 @@ function createTeam() {
             errorSlide(
                 "#captain-alert",
                 "#captain-alert-message",
-                result.error
+                result.responseJSON.error
             );
         });
 }
