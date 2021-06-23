@@ -11,7 +11,7 @@ $(".accordion-header-title").click(function () {
 
 $(document).ready(function () {
     setup_alerts();
-    $("#alert").hide();
+    $("#captain-alert").hide();
 
     // Auth stuff
     const firebaseConfig = {
@@ -175,7 +175,7 @@ function setup_alerts() {
     for (i = 0; i < close.length; i++) {
         // When someone clicks on a close button
         close[i].onclick = function () {
-            $("#alert").hide();
+            $("#captain-alert").hide();
         };
     }
 }
@@ -218,7 +218,7 @@ async function createCaptainAccount() {
             } else {
                 console.log("error", result);
                 errorSlide(
-                    "captain-alert",
+                    "#captain-alert",
                     "#captain-alert-message",
                     result.error
                 );
@@ -226,7 +226,11 @@ async function createCaptainAccount() {
         })
         .catch((result) => {
             console.log(result);
-            errorSlide("captain-alert", "#captain-alert-message", result.error);
+            errorSlide(
+                "#captain-alert",
+                "#captain-alert-message",
+                result.error
+            );
         });
 }
 
@@ -264,7 +268,11 @@ async function createFirebaseAccount(email, password) {
             var errorMessage = error.message;
             console.log(errorCode);
             console.log(errorMessage);
-            errorSlide("captain-alert", "#captain-alert-message", errorMessage);
+            errorSlide(
+                "#captain-alert",
+                "#captain-alert-message",
+                errorMessage
+            );
         });
 }
 
@@ -297,7 +305,7 @@ async function login(email, password) {
         })
         .catch((err) => {
             console.log(err.message);
-            errorSlide("captain-alert", "#captain-alert-message", err.message);
+            errorSlide("#captain-alert", "#captain-alert-message", err.message);
         });
 }
 
@@ -317,11 +325,19 @@ function createTeam() {
     })
         .done((result) => {
             console.log("error", result);
-            errorSlide("captain-alert", "#captain-alert-message", result.error);
+            errorSlide(
+                "#captain-alert",
+                "#captain-alert-message",
+                result.error
+            );
         })
         .catch((result) => {
             console.log(result);
-            errorSlide("captain-alert", "#captain-alert-message", result.error);
+            errorSlide(
+                "#captain-alert",
+                "#captain-alert-message",
+                result.error
+            );
         });
 }
 

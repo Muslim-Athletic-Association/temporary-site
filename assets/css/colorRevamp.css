@@ -1212,13 +1212,13 @@ main {
   padding: 5px 0px;
 }
 
-.custom_alert {
+.alert, #captain-alert {
   opacity: 1;
   transition: opacity 0.6s; /* 600ms to fade out */
 }
 
 /* The alert message box */
-.alert {
+.alert, #captain-alert {
   padding: 20px;
   background-color: #002e2c; /* Red */
   color: white;
