@@ -339,19 +339,20 @@ function createTeam() {
     const team = $("#team-name").val();
     console.log(cookies);
     let p = cookies.person_id;
-    if (team.length < 8) {
+    if (team.length < 3) {
         errorSlide(
             "#captain-alert",
             "#captain-alert-message",
-            "Password must be atleast 8 characters long"
+            "Team name must be atleast 3 characters long"
         );
         return;
     }
     $.ajax({
         url: "https://muslimathleticassociation.org:3001/api/team/create",
         data: {
-            person: p,
+            person_id: p,
             team_name: team,
+            subscription: 1,
             team_capacity: 12,
         },
         type: "POST",
