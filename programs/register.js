@@ -101,7 +101,7 @@ function register(member) {
   console.log(toString(email_consent));
 
   $.ajax({
-    url: "https://muslimathleticassociation.org:3001/api/registration/temporary/subscribe",
+    url: "http://offlinequran.com:3001/api/registration/temporary/subscribe",
     data: {
       first_name: $("#first_name").val(),
       last_name: $("#last_name").val(),

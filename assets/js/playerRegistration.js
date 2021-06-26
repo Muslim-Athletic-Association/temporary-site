@@ -54,7 +54,7 @@ function hideGuardian() {
 function addGuardian(member) {
 
   $.ajax({
-    url: "https://muslimathleticassociation.org:3001/api/addGuardian",
+    url: "http://offlinequran.com:3001/api/addGuardian",
     data: {
       email: $("#guardian-email").val(),
       phone: $("#guardian-phone").val(),
@@ -86,7 +86,7 @@ function getTeams() {
   dropdown.append($('<option></option>').attr('value', "").text("Choose your team"));
 
   $.ajax({
-    url: "https://muslimathleticassociation.org:3001/api/soccer/getTeamNames",
+    url: "http://offlinequran.com:3001/api/soccer/getTeamNames",
     method: "GET",
     type: "https"
   }).done((res) => {
@@ -128,7 +128,7 @@ function validateProgram() {
 
 function registerPlayer() {
   $.ajax({
-    url: "https://muslimathleticassociation.org:3001/api/soccer/registerPlayer",
+    url: "http://offlinequran.com:3001/api/soccer/registerPlayer",
     data: {
       fname: $("#firstName").val(),
       lname: $("#lastName").val(),

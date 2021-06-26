@@ -24,7 +24,7 @@ function getTeams(){
     // dropdown.prop('selectedIndex', 0);
 
     $.ajax({
-        url: "https://muslimathleticassociation.org:3001/api/getUnpaidTeams",
+        url: "http://offlinequran.com:3001/api/getUnpaidTeams",
         method: "GET",
         type: "https"
     }).done((res) => {

@@ -19,7 +19,7 @@ function setup_alerts() {
 
 function contactus() {
     $.ajax({
-        url: "https://muslimathleticassociation.org:3001/api/mail/contactus",
+        url: "http://offlinequran.com:3001/api/mail/contactus",
         method: "POST",
         data: {
             email: $("#email").val(),

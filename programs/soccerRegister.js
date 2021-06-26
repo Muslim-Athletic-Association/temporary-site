@@ -13,6 +13,8 @@ $(document).ready(function () {
     setup_alerts();
     $("#captain-alert").hide();
 
+    getTeams();
+
     // Auth stuff
     const firebaseConfig = {
         apiKey: "AIzaSyBY5rpkm50plJUxUFdx91dp9K_l7B3xTKc",
@@ -209,7 +211,7 @@ async function createCaptainAccount() {
     console.log(email, password);
 
     $.ajax({
-        url: "https://muslimathleticassociation.org:3001/api/addPerson",
+        url: "http://offlinequran.com:3001/api/addPerson",
         data: {
             email: email,
             first_name: first_name,
@@ -260,7 +262,7 @@ async function createFirebaseAccount(email, password) {
             return user.getIdToken().then((idToken) => {
                 console.log(idToken);
                 return fetch(
-                    "https://muslimathleticassociation.org:3001/api/login",
+                    "http://offlinequran.com:3001/api/login",
                     {
                         method: "POST",
                         headers: {
@@ -308,7 +310,7 @@ async function login(email, password) {
             return user.getIdToken().then((idToken) => {
                 console.log(idToken);
                 return fetch(
-                    "https://muslimathleticassociation.org:3001/api/login",
+                    "http://offlinequran.com:3001/api/login",
                     {
                         method: "POST",
                         headers: {
@@ -351,7 +353,7 @@ function createTeam() {
         return;
     }
     $.ajax({
-        url: "https://muslimathleticassociation.org:3001/api/team/create",
+        url: "http://offlinequran.com:3001/api/team/create",
         data: {
             person_id: p,
             team_name: team,
@@ -389,4 +391,33 @@ function getCookieValues() {
         result[cur[0]] = cur[1];
     }
     return result;
+}
+
+function getTeams() {
+    let dropdown = $("#team-dropdown");
+
+    dropdown.empty();
+    dropdown.append(
+        $("<option></option>").attr("value", "").text("Choose your team")
+    );
+
+    $.ajax({
+        url: "http://offlinequran.com:3001/api/:compTitle/getTeams",
+        method: "GET"
+    })
+        .done((res) => {
+            console.log(res);
+            console.log(res.data);
+            for (var team = 0; team < res.data.length; team++) {
+                dropdown.append(
+                    $("<option></option>")
+                        .attr("value", res.data[team].name)
+                        .text(res.data[team].name)
+                );
+                console.log(res.data[team].name + " appended");
+            }
+        })
+        .catch((res) => {
+            console.log("Could not fetch teams.", res);
+        });
 }

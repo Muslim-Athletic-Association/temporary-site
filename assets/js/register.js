@@ -36,7 +36,7 @@ $(document).ready(function(){
 
 function getPrograms(){
     $.ajax({
-        url: "https://muslimathleticassociation.org:3001/api/programs/getPrograms",
+        url: "http://offlinequran.com:3001/api/programs/getPrograms",
         method: "GET",
         type: "https"
     }).done((res) => {
@@ -81,7 +81,7 @@ function validateProgram(){
 
     if ($("#terms").is(":checked")){
         $.ajax({
-            url: "https://muslimathleticassociation.org:3001/api/validateRegistration/" + $("#programs").val() + "/" + $("#gender").val(),
+            url: "http://offlinequran.com:3001/api/validateRegistration/" + $("#programs").val() + "/" + $("#gender").val(),
             method: "POST",
             type: "https"
         }).done((res) => {
@@ -103,7 +103,7 @@ function validateProgram(){
 
 function register(){
     $.ajax({
-        url: "https://muslimathleticassociation.org:3001/api/register",
+        url: "http://offlinequran.com:3001/api/register",
         method: "POST",
         data:  {
             fname: $("#firstName").val(),

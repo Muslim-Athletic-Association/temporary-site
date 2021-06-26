@@ -54,7 +54,7 @@ function validateProgram() {
 
 function registerTeam() {
   $.ajax({
-    url: "https://muslimathleticassociation.org:3001/api/soccer/createTeam",
+    url: "http://offlinequran.com:3001/api/soccer/createTeam",
     method: "POST",
     data: {
       fname: $("#firstName").val(),
