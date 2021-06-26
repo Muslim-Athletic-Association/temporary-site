@@ -5,9 +5,9 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="theme-color" content="#000000" />
-  <meta name="description" content="The Home of the Muslim Athletic Assocition" />
-  <meta property="og:image" content="assets/masjidCup/Sala.jpeg" />
-  <title>MAA</title>
+  <meta name="description" content="Home of the MAA" />
+  <meta property="og:image" content="assets/masjidCup/Salah.jpeg" />
+  <title>Home - MAA</title>
   <meta content="" name="descriptison">
   <meta content="" name="keywords">
 
@@ -38,6 +38,9 @@
   * Author: BootstrapMade.com
   * License: https://bootstrapmade.com/license/
   ======================================================== -->
+ <!-- The core Firebase JS SDK is always required and must be listed first -->
+ <script src="https://www.gstatic.com/firebasejs/8.6.3/firebase-app.js"></script>
+
 </head>
 
 <body>
@@ -48,14 +51,13 @@
   <header id="header" class="fixed-top">
     <div class="container d-flex align-items-center">
 
-      <a href="index.html" class="logo mr-auto"><img src="assets/img/logos/MAAlogo.png" alt="" class="img-fluid"></a>
-      <h1 class="logo mr-auto page-title"><a class="nav-btn" href="index.html">Muslim Athletic Association</a></h1>
+      <a href="index.html" class="logo mr-auto"><img src="assets/img/logos/MAALogoSide.png" alt="" class="img-fluid"></a>
       <!-- Uncomment below if you prefer to use an image logo -->
 
       <nav class="nav-menu d-none d-lg-block">
         <ul>
           <li class="active"><a class="nav-btn" href="#">Home</a></li>
-          <li><a class="nav-btn" href="./register.html">Register</a></li>
+          <li><a class="nav-btn" href="./programs/soccerRegister.html">Register</a></li>
           <!-- <li class="book-a-table text-center"><a href="#book-a-table">Book a table</a></li> -->
         </ul>
       </nav><!-- .nav-menu -->
@@ -74,7 +76,7 @@
             <h2 class="img-text-subheader">Building Bridges Through Sport</h2>
           </div>
           <div class="btns">
-            <a href="./register.html#register" class="btn-menu animated fadeInUp scrollto">Register For Yoga</a>
+            <a href="./programs/soccerRegister.html" class="btn-menu animated fadeInUp scrollto">Register For Soccer</a>
           </div>
           <div class="social-links mt-3">
             <a href="https://www.facebook.com/muslimathleticassociation" class="facebook"><i
@@ -88,7 +90,7 @@
   </section>
   <!-- End Hero -->
   <main>
-    <!-- ======= About Section ======= -->
+          <!-- ======= About Section ======= -->
     <section id="about" class="about">
       <div class="container" data-aos="fade-up">
 
@@ -211,6 +213,7 @@
   <script src="assets/vendor/aos/aos.js"></script>
 
   <!-- Template Main JS File -->
+  <script src="./login.js"></script>
   <script src="assets/js/main.js"></script>
   <script src="./contact.js"></script>
 
