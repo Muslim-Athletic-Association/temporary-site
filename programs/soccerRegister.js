@@ -411,10 +411,10 @@ function getTeams() {
             for (var team = 0; team < res.data.length; team++) {
                 dropdown.append(
                     $("<option></option>")
-                        .attr("value", res.data[team].name)
-                        .text(res.data[team].name)
+                        .attr("value", res.data[team].team_name)
+                        .text(res.data[team].team_name)
                 );
-                console.log(res.data[team].name + " appended");
+                console.log(res.data[team].team_name + " appended");
             }
         })
         .catch((res) => {
