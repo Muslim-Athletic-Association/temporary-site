@@ -394,7 +394,7 @@ function getCookieValues() {
 }
 
 function getTeams() {
-    let dropdown = $("#team-dropdown");
+    let dropdown = $("#team_name");
 
     dropdown.empty();
     dropdown.append(
@@ -402,7 +402,7 @@ function getTeams() {
     );
 
     $.ajax({
-        url: "http://offlinequran.com:3001/api/:compTitle/getTeams",
+        url: "http://offlinequran.com:3001/api/Men's%20League/getTeams",
         method: "GET"
     })
         .done((res) => {
