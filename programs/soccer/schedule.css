@@ -1,0 +1,6 @@
+#sponsors img{
+    max-height: 100px;
+    min-height: 100px;
+    max-width: 300px;
+    object-fit: scale-down;
+}

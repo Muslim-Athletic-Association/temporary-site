@@ -1218,7 +1218,7 @@ main {
 }
 
 /* The alert message box */
-.alert, #captain-alert {
+.alert, #captain-alert, .check-alert {
   padding: 20px;
   background-color: #002e2c; /* Red */
   color: white;
