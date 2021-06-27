@@ -230,6 +230,51 @@
             data-msg="Please enter a valid birthday" />
             <div class="validate"></div>
           </div>
+          <div class="program-register" id="guardian-info">
+            <div class="section-title" id="guardian-title">
+                <h2>Guardian Information</h2>
+            </div>
+            <div class="form-row" id="guardian-info">
+                <div class="col-lg-4 col-md-6 form-group">
+                    <label>Name</label>
+                    <input type="text" name="guardian-firstName" class="form-control" id="guardian-name"
+                        placeholder="Guardian Name" data-rule="minlen:1" data-msg="Please enter at least 1 char">
+                    <div class="validate"></div>
+                </div>
+                <div class="col-lg-4 col-md-6 form-group">
+                    <label>Phone</label>
+                    <input type="text" class="form-control" name="guardian-phone" id="guardian-phone"
+                        placeholder="Guardian Phone" data-rule="minlen:10" data-msg="Please enter a valid phone number">
+                    <div class="validate"></div>
+                </div>
+                <div class="col-lg-4 col-md-6 form-group">
+                    <label>Email</label>
+                    <input type="email" class="form-control" name="guardian-email" id="guardian-email"
+                        placeholder="Guardian Email" data-rule="email" data-msg="Please enter a valid email">
+                    <div class="validate"></div>
+                </div>
+            </div>
+            <div class="container terms-sign" id="guardian-sign">
+                <input type="checkbox" class="term-check" required name="guardian-terms">
+                <label for="guardian-terms"> I acknoweledge that the guardian information provided is
+                    true and that the guardian has allowed the registrant to participate in any
+                    Muslim Athletic Association programs, activities, events, and competitions.
+                </label>
+            </div>
+        </div>
+        <div class="container">
+          <div class="container terms-sign">
+                <input type="checkbox" class="term-check" id="agreement" required name="terms">
+                <label for="terms"> I have read and agree to all regulations explicitly
+                    mentioned in the section titled "Attendee Agreement".
+                </label>
+                <br>
+                <input type="checkbox" class="term-check" id="recieve-emails" required="false" name="terms"
+                    checked="true">
+                <label for="terms"> I would like to recieve updates and offers from MAA and it's sponsors.
+                </label>
+            </div>
+        </div>
           <div class="container">
                   
                   <div class="text-center">

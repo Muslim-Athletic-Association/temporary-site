@@ -82,7 +82,7 @@ function checkTerms() {
     return true;
 }
 
-function register(member) {
+function register() {
     if (!checkTerms()) {
         return false;
     }
@@ -115,22 +115,22 @@ function register(member) {
     console.log(toString(email_consent));
 
     $.ajax({
-        url: "httpss://muslimathleticassociation.org:3001/api/registration/temporary/subscribe",
+        url: "httpss://muslimathleticassociation.org:3001/api/team/player",
         data: {
             first_name: $("#first_name").val(),
             last_name: $("#last_name").val(),
             phone: $("#phone").val(),
             email: $("#email").val(),
             birthday: $("#birthday").val(),
-            gender: "Female",
-            program: "Yoga",
+            gender: "Male",
+            program: "Men's Soccer",
             payment: 0,
-            team_name: "",
+            team: $("#team_name").val(),
             datetime: new Date().toISOString().slice(0, 19).replace("T", " "),
             subscription: 1,
             consent: [
-                { given: "true", purpose: "Yoga Agreement" },
-                { given: email_consent, purpose: "Yoga Sponsor Contact" },
+                { given: "true", purpose: "Soccer 2021 Season Agreement" },
+                { given: email_consent, purpose: "Soccer Sponsor Contact" },
             ],
             guardian: {
                 email: $("#guardian-email").val(),
