@@ -1250,6 +1250,7 @@ main {
 #regulations {
   border: solid 2px #002e2c;
   padding: 10px;
+  width: 100%;
 }
 
 ul .term::before {
@@ -1267,7 +1268,4 @@ ul {
 
 .faq{
   margin: 5px 0px;
-}
-.order-2{
-  text-align: center;
 }

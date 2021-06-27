@@ -115,7 +115,7 @@ function register() {
     console.log(toString(email_consent));
 
     $.ajax({
-        url: "httpss://muslimathleticassociation.org:3001/api/team/player",
+        url: "https://muslimathleticassociation.org:3001/api/team/player",
         data: {
             first_name: $("#first_name").val(),
             last_name: $("#last_name").val(),
@@ -211,7 +211,7 @@ async function createCaptainAccount() {
     console.log(email, password);
 
     $.ajax({
-        url: "http://offlinequran.com:3001/api/addPerson",
+        url: "https://muslimathleticassociation.org:3001/api/addPerson",
         data: {
             email: email,
             first_name: first_name,
@@ -262,7 +262,7 @@ async function createFirebaseAccount(email, password) {
             return user.getIdToken().then((idToken) => {
                 console.log(idToken);
                 return fetch(
-                    "http://offlinequran.com:3001/api/login",
+                    "https://muslimathleticassociation.org:3001/api/login",
                     {
                         method: "POST",
                         headers: {
@@ -310,7 +310,7 @@ async function login(email, password) {
             return user.getIdToken().then((idToken) => {
                 console.log(idToken);
                 return fetch(
-                    "http://offlinequran.com:3001/api/login",
+                    "https://muslimathleticassociation.org:3001/api/login",
                     {
                         method: "POST",
                         headers: {
@@ -353,7 +353,7 @@ function createTeam() {
         return;
     }
     $.ajax({
-        url: "http://offlinequran.com:3001/api/team/create",
+        url: "https://muslimathleticassociation.org:3001/api/team/create",
         data: {
             person_id: p,
             team_name: team,
@@ -402,7 +402,7 @@ function getTeams() {
     );
 
     $.ajax({
-        url: "http://offlinequran.com:3001/api/Men's%20League/getTeams",
+        url: "https://muslimathleticassociation.org:3001/api/Men's%20League/getTeams",
         method: "GET"
     })
         .done((res) => {
