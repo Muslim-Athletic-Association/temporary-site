@@ -14,19 +14,32 @@ function getStandings() {
         .done((res) => {
             console.log(res);
             console.log(res.data);
-            for (var team = 0; team < res.data.length; team++) {
-                var goal_difference = res.data[team].goals_for - res.data[team].goals_against;
-                var points = (res.data[team].wins * 3) + (res.data[team].ties);
+
+            teams = res.data;
+            //add goal_difference
+            teams.forEach(function (element) {
+                element.goal_difference = element.goals_for - element.goals_against;
+              });
+            
+            //add points
+            teams.forEach(function (element) {
+                element.points = (element.wins*3) + (element.ties);
+              });
+
+            //sort by points
+            teams.sort((a, b) => b.points - a.points);
+
+            for (var team = 0; team < teams.length; team++) {
                 $("#standings tbody").append("<tr>" +
-                "<td>" + res.data[team].team_name +
-                "<td>" + res.data[team].fixtures_played +
-                "<td>" + res.data[team].wins +
-                "<td>" + res.data[team].ties +
-                "<td>" + res.data[team].losses +
-                "<td>" + res.data[team].goals_for +
-                "<td>" + res.data[team].goals_against +
-                "<td>" + goal_difference +
-                "<td>" + points +
+                "<td>" + teams[team].team_name +
+                "<td>" + teams[team].fixtures_played +
+                "<td>" + teams[team].wins +
+                "<td>" + teams[team].ties +
+                "<td>" + teams[team].losses +
+                "<td>" + teams[team].goals_for +
+                "<td>" + teams[team].goals_against +
+                "<td>" + teams[team].goal_difference +
+                "<td>" + teams[team].points +
                 "</tr>");
             }
 
