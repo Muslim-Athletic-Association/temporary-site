@@ -151,6 +151,7 @@ function register() {
                 );
                 $("#alert").slideDown();
                 $("#register-button").hide();
+                send_confirmation_email();
             } else {
                 $("#alert-message").html(
                     data.error +
@@ -167,6 +168,17 @@ function register() {
             );
             $("#alert").slideDown();
         });
+}
+
+function send_confirmation_email() {
+    $.ajax({
+        url: "https://muslimathleticassociation.org:3001/api/mail/registration",
+        data: {
+            program: "Soccer",
+        },
+        type: "POST",
+        dataType: "text json",
+    });
 }
 
 function setup_alerts() {
@@ -403,14 +415,14 @@ function getTeams() {
 
     $.ajax({
         url: "https://muslimathleticassociation.org:3001/api/Men's%20League/getTeams",
-        method: "GET"
+        method: "GET",
     })
         .done((res) => {
-            teams = []
+            teams = [];
             for (var team = 0; team < res.data.length; team++) {
                 teams.push(res.data[team].team_name);
             }
-            teams.sort()
+            teams.sort();
             for (var team = 0; team < teams.length; team++) {
                 dropdown.append(
                     $("<option></option>")
