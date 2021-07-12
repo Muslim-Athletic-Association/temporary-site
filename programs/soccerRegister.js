@@ -406,15 +406,17 @@ function getTeams() {
         method: "GET"
     })
         .done((res) => {
-            console.log(res);
-            console.log(res.data);
+            teams = []
             for (var team = 0; team < res.data.length; team++) {
+                teams.push(res.data[team].team_name);
+            }
+            teams.sort()
+            for (var team = 0; team < teams.length; team++) {
                 dropdown.append(
                     $("<option></option>")
-                        .attr("value", res.data[team].team_name)
-                        .text(res.data[team].team_name)
+                        .attr("value", teams[team])
+                        .text(teams[team])
                 );
-                console.log(res.data[team].team_name + " appended");
             }
         })
         .catch((res) => {
