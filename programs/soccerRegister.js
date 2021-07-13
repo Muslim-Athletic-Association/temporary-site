@@ -174,6 +174,7 @@ function send_confirmation_email() {
     $.ajax({
         url: "https://muslimathleticassociation.org:3001/api/mail/registration",
         data: {
+            email: $("#email").val(),
             program: "Soccer",
         },
         type: "POST",
