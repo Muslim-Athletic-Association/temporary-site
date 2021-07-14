@@ -43,14 +43,26 @@ function getSchedule() {
         .done((res) => {
             console.log(res);
             console.log(res.data);
-            for (var fixture = 0; fixture < res.data.length; fixture++) {
+
+            fixtures = res.data;
+
+            fixtures.forEach(function(fixture) {
+                fixture.date = moment(fixture.fixture_date.slice(0,fixture.fixture_date.indexOf("T"))).format("ddd, MMM DD");
+            });
+
+            fixtures.forEach(function(fixture) {
+                fixture.time = moment(fixture.fixture_time, "HH:mm:ss").format("h:mm A");
+            });
+
+
+            for (var fixture = 0; fixture < fixtures.length; fixture++) {
                 $("#schedule tbody").append("<tr>" +
-                "<td>" + res.data[fixture].team1 +
-                "<td>" + res.data[fixture].score1 +
-                "<td>" + res.data[fixture].score2 +
-                "<td>" + res.data[fixture].team1 +
-                "<td>" + res.data[fixture].date +
-                "<td>" + res.data[fixture].time +
+                "<td>" + fixtures[fixture].team1 +
+                "<td>" + fixtures[fixture].score1 +
+                "<td>" + fixtures[fixture].score2 +
+                "<td>" + fixtures[fixture].team1 +
+                "<td>" + fixtures[fixture].date +
+                "<td>" + fixtures[fixture].time +
                 "</tr>");
             }
 
