@@ -830,6 +830,16 @@ section {
   border-bottom: solid 0.5px #000000;
 }
 
+.basketball-hero {
+  margin-top: 80px;
+  margin-bottom: 20px;
+  background: url("../img/basketball/metal-basketball.jpg") center center;
+  background-size: cover;
+  position: relative;
+  height: 75vh;
+  border-bottom: solid 0.5px #000000;
+}
+
 .got-your-back:before {
   content: "";
   background: rgba(0, 0, 0, 0.3);
