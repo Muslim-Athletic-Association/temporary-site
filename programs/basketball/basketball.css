@@ -39,3 +39,7 @@ iframe{
 .collaborations{
     padding-bottom: 0;
 }
+
+.section-title h2{
+    line-height: unset;
+}
