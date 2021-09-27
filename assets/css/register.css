@@ -76,6 +76,9 @@
   .collaborations .nav-link {
     padding: 15px;
   }
+  .row{
+    margin: 0%;
+  }
 }
 
 @media (min-width: 992px) {

@@ -64,6 +64,13 @@ iframe{
     background: #002350;
     margin: 0px 0px 20px 10px;
 }
+
+@media (max-width: 992px){
+    .payment-button{
+        white-space: normal;
+    }
+}
+
 .payment-button:hover{
     background: #294936;
     color: white;
