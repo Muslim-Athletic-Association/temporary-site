@@ -1,3 +1,5 @@
 .vscode
 .metals
 
+package-lock.json
+node_modules
