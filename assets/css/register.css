@@ -76,7 +76,7 @@
   .collaborations .nav-link {
     padding: 15px;
   }
-  .row{
+  .row {
     margin: 0%;
   }
 }
@@ -129,7 +129,8 @@
   transition: 0.3s;
 }
 
-.instruction, .instruction h2{
+.instruction,
+.instruction h2 {
   font-size: 14px;
   font-weight: 500;
   line-height: normal;
@@ -142,28 +143,25 @@
   padding: 0px 3px;
 }
 
-#team-creation{
+#team-creation {
   /* display: none; */
   text-align: center;
   vertical-align: center;
   width: 100%;
 }
 
-.single-input{
+.single-input {
   text-align: center;
   vertical-align: center;
   width: 100%;
 }
 
-.single-input .form-control{
+.single-input .form-control {
   margin: auto;
   width: 40vh;
   margin-bottom: 10px;
 }
 
-.create-team{
-  display: none;
-}
 #check-email {
   text-align: center;
   display: block;
@@ -177,4 +175,8 @@
   border: 1px solid #ced4da;
   border-radius: 0.25rem;
   transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+}
+
+.form-control {
+  background: #e0e0e0;
 }
