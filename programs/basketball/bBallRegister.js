@@ -1,4 +1,4 @@
-const API_URL = "http://localhost:3001/api"; // This should be an env variable.
+const API_URL = "https://muslimathleticassociation.org:3001/api"; // This should be an env variable.
 
 async function apiPOST(path, body = {}) {
   return await $.ajax({
@@ -130,7 +130,8 @@ function registration_validation(inputs) {
           .split("_")
           .join(
             " "
-          )} must be filled in <br> Phone or Text 416-556-6718 or Email info@maaweb.org if you think there is an issue.`
+          )} must be filled in <br> Phone or Text 416-556-6718 or Email info@maaweb.org if you think there is an issue.
+          If you are using a Safari browser, try using chrome.`
       );
       $("#alert").slideDown();
       return false;
@@ -188,7 +189,7 @@ async function createTeam2() {
       if (res.success && returning == "Yes") {
         window.location =
           "https://checkout.square.site/merchant/MLX4BNZVQWGK4/checkout/OJDNT6YTB4ESJXOZDHUL5KDU";
-      } else if (res.success){
+      } else if (res.success) {
         window.location =
           "https://checkout.square.site/merchant/MLX4BNZVQWGK4/checkout/2XPWG2VXYRNORLXOIFT63GSL";
       }
