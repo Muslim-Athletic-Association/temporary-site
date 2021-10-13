@@ -44,7 +44,19 @@ $(".accordion-header-title").click(function () {
 });
 
 $(document).ready(async function () {
-  let colors = ["BLUE", "GREEN", "BLACK", "WHITE"];
+  let colors = [
+    "PINK/GRAY",
+    "PURPLE/GOLD",
+    "PURPLE",
+    "GREEN",
+    "YELLOW",
+    "RED",
+    "BLUE",
+    "ORANGE",
+    "BLACK",
+    "BEIGE",
+  ];
+  colors.sort();
   await getTeams(colors);
   setup_alerts();
   $("#captain-alert").hide();
@@ -173,10 +185,10 @@ async function createTeam2() {
         `${res.error} <br> Phone or Text 416-556-6718 or Email info@maaweb.org if you think there is an issue.`
       );
       let returning = $("#captain-attendance").val();
-      if (res.success && returning) {
+      if (res.success && returning == "Yes") {
         window.location =
           "https://checkout.square.site/merchant/MLX4BNZVQWGK4/checkout/OJDNT6YTB4ESJXOZDHUL5KDU";
-      } else {
+      } else if (res.success){
         window.location =
           "https://checkout.square.site/merchant/MLX4BNZVQWGK4/checkout/2XPWG2VXYRNORLXOIFT63GSL";
       }
