@@ -79,15 +79,86 @@ iframe {
 .league-hero {
   margin-top: 80px;
   margin-bottom: 20px;
-  background: linear-gradient(rgba(0, 0, 0, 0.151), rgba(0, 0, 0, 0.76)), url("../../assets/img/basketball/tipOff.png") center center;
+  background: linear-gradient(rgba(0, 0, 0, 0.151), rgba(0, 0, 0, 0.76)),
+    url("../../assets/img/basketball/tipOff.png") center center;
   background-size: cover;
   position: relative;
   height: 75vh;
   border-bottom: solid 0.5px #000000;
 }
 
+/* Style the video: 100% width and height to cover the entire window */
+#guardUpTournament_video {
+  /* position: fixed; */
+  right: 0;
+  bottom: 0;
+  min-width: 100%;
+  min-height: 100%;
+  position: absolute;
+  height: 75vh;
+  border-bottom: solid 0.5px #000000;
+  margin-top: 80px;
+  object-fit: cover;
+}
+
+/* Add some content at the bottom of the video/page */
+.video-content {
+  position: fixed;
+  bottom: 0;
+  /* background: rgba(0, 0, 0, 0.5); */
+  text-transform: capitalize;
+  color: #f1f1f1;
+  width: 100%;
+}
+
+h2, h4{
+  font-family: "Open Sans", sans-serif;
+  text-transform: capitalize;
+}
+h4{
+  background: #002350;
+  color: white;
+  padding: 10px;
+  border-radius: 4px;
+}
+
+.video_bkg{
+  position: relative;
+}
+
+.collaborations{
+  padding-top: 0px;
+}
+
 @media (max-width: 992px) {
   .league-hero {
-    background-size:auto;
+    background-size: auto;
   }
+  #guardUpTournament_video {
+    position: fixed;
+    right: 0;
+    bottom: 0;
+    min-width: 100%;
+    position: absolute;
+    border-bottom: solid 0.5px #000000;
+    margin-top: 50px;
+    border-bottom: 1px solid black;
+    object-fit: cover;
+  }
+  .img-text-subheader{
+    display: none;
+  }
+
+  /* #guardUpTournament_video{
+    display: none;
+  } */
+  /* .league-hero {
+    margin-top: 0px;
+    background: linear-gradient(rgba(0, 0, 0, 0.151), rgba(0, 0, 0, 0.76)), url("../../assets/img/basketball/tipOff.png") center center;
+    background-size: cover;
+    position: relative;
+    height: 75vh;
+    margin-bottom: -50px;
+    border-bottom: solid 0.5px #000000;
+  } */
 }
