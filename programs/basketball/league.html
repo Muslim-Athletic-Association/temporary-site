@@ -31,15 +31,6 @@
     <link href="../../assets/vendor/venobox/venobox.css" rel="stylesheet">
     <link href="../../assets/vendor/aos/aos.css" rel="stylesheet">
 
-    <!-- Firebase files -->
-    <script
-        src="https://www.gstatic.com/firebasejs/7.14.1/firebase-app.js"
-        defer
-    ></script>
-    <script
-        src="https://www.gstatic.com/firebasejs/7.14.1/firebase-auth.js"
-        defer
-    ></script>
     <script
         src="https://cdn.jsdelivr.net/npm/js-cookie@rc/dist/js.cookie.min.js"
         defer
@@ -49,6 +40,9 @@
     <link href="../../assets/css/colorRevamp.css" rel="stylesheet">
     <link href="../../assets/css/register.css" rel="stylesheet">
     <link href="./basketball.css" rel="stylesheet">
+
+    <script href="../../node_modules/axios/dist/axios.min.js"> </script>
+    <script href="../../assets/js/utils.js"> </script>
 
 </head>
 
@@ -77,7 +71,7 @@
     <!-- End Header -->
 
     <!-- ======= Hero Section ======= -->
-    <section id="" class="basketball-hero d-flex align-items-center">
+    <section id="" class="league-hero d-flex align-items-center">
         <div class="container position-relative text-center text-lg-left" data-aos="zoom-in" data-aos-delay="100">
             <div class="row">
                 <div class="col-sm-8">
@@ -195,21 +189,16 @@
               
               
               <div class="form-row collapse" id="captainForm">
-                  <div class="single-input create-team">
-                      <!-- <div class="form-group"> -->
-                          <label>Team Name</label>
-                          <input type="text" name="team-name" class="form-control" id="team-name" placeholder="Your team name"
-                              data-rule="minlen:3" data-msg="Please enter at least 1 chars" required />
-                          <div class="validate"></div>
-                      <!-- </div> -->
-                      <div class="text-center">
-                          <button class="btn-menu" type="submit" id="register-team-button" onclick="createTeam()">Create Team</button>
-                      </div>
-                  </div>
                   
                   <div class="form-row container" id="create-captain-account">
-                  <div class="section-title instruction"><h2>Captains must create an account before creating a team.</h2></div>
+                  <div class="section-title instruction"><h2>Only captains are responsible for creating a team and payments.</h2></div>
                   <br>
+                  <div class="col-lg-4 col-md-6 form-group">
+                    <label>Team Name</label>
+                    <input type="text" name="team_name" class="form-control" id="captain-team-name"
+                        placeholder="Your Team Name" data-rule="minlen:1" data-msg="Please enter at least 1 chars" required/>
+                    <div class="validate"></div>
+                </div>
                   <div class="col-lg-4 col-md-6 form-group">
                       <label>First Name</label>
                       <input type="text" name="captain-first_name" class="form-control" id="captain-first_name"
@@ -218,7 +207,7 @@
                   </div>
                   <div class="col-lg-4 col-md-6 form-group">
                       <label>Last Name</label>
-                      <input type="text" name="last_name" class="form-control" id="captain-last_name" placeholder="Your Last Name"
+                      <input type="text" name="captain-last_name" class="form-control" id="captain-last_name" placeholder="Your Last Name"
                           data-rule="minlen:1" data-msg="Please enter at least 1 chars" required/>
                       <div class="validate"></div>
                   </div>
@@ -241,16 +230,44 @@
                           data-msg="Please enter a valid birthday" />
                       <div class="validate"></div>
                   </div>
-          
+                  <div class="col-lg-4 col-md-6 form-group">
+                    <label>Jersey Colour</label>
+                    <select type="text" name="team_name" class="form-control" id="jersey_color" placeholder="Color"
+                    data-rule="minlen:1" data-msg="Please enter at least 1 chars">
+                      <option disabled selected>Select a color</option>
+                    </select>
+                    <div class="validate"></div>
+                  </div>
+                  <div class="col-lg-4 col-md-6 form-group">
+                    <label>Did you attend our Guard up Tournament?</label>
+                    <select type="text" name="team_name" class="form-control" id="captain-attendance" placeholder="No"
+                    data-rule="minlen:1" data-msg="Please enter at least 1 chars">
+                      <option selected>No</option>
+                      <option>Yes</option>
+                    </select>
+                    <div class="validate"></div>
+                  </div>
+                  <div class="container">
+                    <div class="container terms-sign">
+                        <input type="checkbox" class="term-check" id="agreement" required="" name="terms">
+                        <label for="terms"> I have read and agree to all regulations explicitly
+                            mentioned in the <a id="waiver" href="../../assets/waivers/BasketballMens.pdf">liability waiver</a>.
+                        </label>
+                        <br />
+                        <input type="checkbox" class="term-check" id="recieve-emails" name="terms" checked="true">
+                        <label for="terms"> I would like to recieve updates and offers from MAA and it's sponsors.
+                        </label>
+                    </div>
+                </div>
           <div class="text-center container">
-              <button class="btn-menu" type="submit" onclick="createCaptainAccount()">Create an account</button>
+              <button class="btn-menu" type="submit" onclick="createTeam2()">Register and Create a Team</button>
           </div>
       
           </div>
           <div class="container">
-              <div class="container captain-alert" id="captain-alert">
+              <div class="container captain-alert" id="alert">
                 <span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span>
-                <div id="captain-alert-message"></div>
+                <div id="alert-message"></div>
               </div>
             </div>
               </div>
@@ -264,8 +281,8 @@
                   <div class="container">
                   <p>
                       Player registration and waivers have not yet been released.
-                      When the time comes, players will only be able to register for their captain's team.
-                      Player registration will open on October *th.
+                      When the time comes, players should only register for their captain's team.
+                      Player registration will open on October 25th.
                   </p>
                   </div>
               </div>
@@ -315,8 +332,36 @@
                 
             </div>
                 
-                <div class="container collapse faq" id="FAQ3">
-                    To be updated closer to season start
+            <div class="container collapse faq" id="FAQ3">
+                <div class="section-title">
+                    <h2>
+                    What is the format?
+                    </h2>
+                    <ul>
+                    <li><i class="fas fa-basketball-ball list-icon"></i> 10 teams in total </li>
+                    <li><i class="fas fa-basketball-ball list-icon"></i> 8-10 players per team </li>
+                    <li><i class="fas fa-basketball-ball list-icon"></i> Round Robin. </li>
+                    <li><i class="fas fa-basketball-ball list-icon"></i> 9 guaranteed games to determine seeding. </li>
+                    <li><i class="fas fa-basketball-ball list-icon"></i> Top 4 teams proceed to semifinals. </li>
+                    </ul>
+                </div>
+                <div class="section-title">
+                    <h2>
+                    Where is the tournament?
+                    </h2>
+                    <ul>
+                    <li><i class="fas fa-basketball-ball list-icon"></i> Location: Trafalgar Park Community Center, Oakville</li>
+                    </ul>
+                </div>
+                <div class="section-title">
+                    <h2>
+                    What time should I arrive?
+                    </h2>
+                    <ul>
+                    <li><i class="fas fa-basketball-ball list-icon"></i> Captains arrive by 4:30 pm every ___ starting ___ </li>
+                    <li><i class="fas fa-basketball-ball list-icon"></i> Tip off is at 5:00 pm  </li>
+                    </ul>
+                </div>
             </div>
         </div>
         

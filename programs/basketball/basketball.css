@@ -79,7 +79,7 @@ iframe {
 .league-hero {
   margin-top: 80px;
   margin-bottom: 20px;
-  background: url("../../assets/img/basketball/tipOff.png") center center;
+  background: linear-gradient(rgba(0, 0, 0, 0.151), rgba(0, 0, 0, 0.76)), url("../../assets/img/basketball/tipOff.png") center center;
   background-size: cover;
   position: relative;
   height: 75vh;

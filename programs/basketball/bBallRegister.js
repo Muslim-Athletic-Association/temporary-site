@@ -1,5 +1,39 @@
-// This file sends requests and handles dynamic displays for registration
-// import fv from "./formValidation";
+const API_URL = "http://localhost:3001/api"; // This should be an env variable.
+
+async function apiPOST(path, body = {}) {
+  return await $.ajax({
+    url: API_URL + path,
+    type: "POST",
+    data: body,
+    dataType: "text json",
+  })
+    .done((res) => {
+      console.log(res);
+      return res;
+    })
+    .catch((err) => {
+      console.log(err.responseJSON);
+      return err.responseJSON;
+    });
+}
+
+async function apiGET(path) {
+  return await $.ajax({
+    url: API_URL + path,
+    type: "GET",
+    dataType: "text json",
+  })
+    .done((res) => {
+      console.log(res);
+      return res;
+    })
+    .catch((err) => {
+      console.log(err.responseJSON);
+      return err.responseJSON;
+    });
+}
+
+// The above code is also in utils.js and should be replaced by that file when we figure out imports.
 
 $(".accordion-header-title").click(function () {
   if ($(".accordion-header-icon").css("transform") == "none") {
@@ -9,7 +43,9 @@ $(".accordion-header-title").click(function () {
   }
 });
 
-$(document).ready(function () {
+$(document).ready(async function () {
+  let colors = ["BLUE", "GREEN", "BLACK", "WHITE"];
+  await getTeams(colors);
   setup_alerts();
   $("#captain-alert").hide();
 });
@@ -64,59 +100,29 @@ function checkTerms() {
   return true;
 }
 
-function createPerson() {
-  $.ajax({
-    url: "https://muslimathleticassociation.org:3001/api/registration/temporary/subscribe",
-    data: {
-      first_name: $("#first_name").val(),
-      last_name: $("#last_name").val(),
-      phone: $("#phone").val(),
-      email: $("#email").val(),
-      birthday: $("#birthday").val(),
-      gender: "Female",
-      program: "Basketball",
-      payment: 0,
-      team_name: "",
-      datetime: new Date().toISOString().slice(0, 19).replace("T", " "),
-      subscription: 1,
-      consent: [
-        { given: "true", purpose: "Yoga Agreement" },
-        { given: email_consent, purpose: "Yoga Sponsor Contact" },
-      ],
-      guardian: {
-        email: $("#guardian-email").val(),
-        phone: $("#guardian-phone").val(),
-        full_name: $("#guardian-name").val(),
-      },
-    },
-    type: "POST",
-    dataType: "text json",
-  });
+function getTime() {
+  return new Date().toISOString().slice(0, 19).replace("T", " ");
 }
 
-function getPerson() {
-  $.ajax({
-    url: "https://muslimathleticassociation.org:3001/api/registration/temporary/subscribe",
-    data: {
-      email: $("#email").val(),
-    },
-    type: "POST",
-    dataType: "text json",
-  });
-}
-
-function register(member) {
+function registration_validation(inputs) {
   if (!checkTerms()) {
     return false;
   }
-
-  if ($("#first_name").val() == "" || $("#last_name").val() == "") {
-    $("#alert-message").html(
-      "Please fill in your first and last name." +
-        "<br> Please contact us at info@maaweb.org if you think there is an issue."
-    );
-    $("#alert").slideDown();
-    return false;
+  keys = Object.keys(inputs);
+  values = Object.values(inputs);
+  for (let v = 0; v < values.length; v++) {
+    console.log(keys[v], values[v]);
+    if (!values[v]) {
+      $("#alert-message").html(
+        `${keys[v]
+          .split("_")
+          .join(
+            " "
+          )} must be filled in <br> Phone or Text 416-556-6718 or Email info@maaweb.org if you think there is an issue.`
+      );
+      $("#alert").slideDown();
+      return false;
+    }
   }
 
   if (
@@ -127,67 +133,49 @@ function register(member) {
   ) {
     $("#alert-message").html(
       "Please fill in your guardian information." +
-        "<br> Please contact us at info@maaweb.org if you think there is an issue."
+        "<br> Phone or Text 416-556-6718 or Email info@maaweb.org if you think there is an issue."
     );
     $("#alert").slideDown();
     return false;
   }
+  return true;
+}
 
-  var email_consent = $("#recieve-emails").is(":checked");
-
-  $.ajax({
-    url: "https://muslimathleticassociation.org:3001/api/registration/temporary/subscribe",
-    data: {
-      first_name: $("#first_name").val(),
-      last_name: $("#last_name").val(),
-      phone: $("#phone").val(),
-      email: $("#email").val(),
-      birthday: $("#birthday").val(),
-      gender: "Female",
-      program: "Basketball",
-      payment: 0,
-      team_name: "",
-      datetime: new Date().toISOString().slice(0, 19).replace("T", " "),
-      subscription: 1,
-      consent: [
-        { given: "true", purpose: "Yoga Agreement" },
-        { given: email_consent, purpose: "Yoga Sponsor Contact" },
-      ],
-      guardian: {
-        email: $("#guardian-email").val(),
-        phone: $("#guardian-phone").val(),
-        full_name: $("#guardian-name").val(),
-      },
+async function createTeam2() {
+  let captainInput = {
+    first_name: $("#captain-first_name").val(),
+    last_name: $("#captain-last_name").val(),
+    phone: $("#captain-phone").val(),
+    email: $("#captain-email").val(),
+    birthday: $("#captain-birthday").val(),
+    color: $("#jersey_color").val(),
+    gender: "Male",
+    program: "Basketball",
+    team_name: $("#captain-team-name").val(),
+    datetime: getTime(),
+    group_id: 2,
+    subscription: 2,
+    team_capacity: 10,
+    consent: [
+      { given: "true", purpose: "Basketball League Agreement" },
+      { given: "true", purpose: "Basketball Contact" },
+    ],
+    guardian: {
+      email: $("#guardian-email").val(),
+      phone: $("#guardian-phone").val(),
+      full_name: $("#guardian-name").val(),
     },
-    type: "POST",
-    dataType: "text json",
-  })
-    .done((data) => {
-      console.log(data);
-      console.log(data.error);
-      if (data.success == true) {
-        $("#alert-message").html(
-          data.error +
-            "<br> Please contact us at info@maaweb.org if you think there is an issue."
-        );
-        $("#alert").slideDown();
-        $("#register-button").hide();
-      } else {
-        $("#alert-message").html(
-          data.error +
-            "<br> Please contact us at info@maaweb.org if you think there is an issue."
-        );
-        $("#alert").slideDown();
-      }
-    })
-    .catch((error) => {
-      console.log("Registration failed.", error.responseJSON.error);
+  };
+  // We should probably ensure that the captains is 18+ too
+  if (registration_validation(captainInput)) {
+    return await apiPOST("/team/create", captainInput).then((err) => {
       $("#alert-message").html(
-        error.responseJSON.error +
-          "<br> Please contact us at info@maaweb.org if you think there is an issue."
+        `${err.error} <br> Phone or Text 416-556-6718 or Email info@maaweb.org if you think there is an issue.`
       );
       $("#alert").slideDown();
+      return false;
     });
+  }
 }
 
 function setup_alerts() {
@@ -198,7 +186,7 @@ function setup_alerts() {
   for (i = 0; i < close.length; i++) {
     // When someone clicks on a close button
     close[i].onclick = function () {
-      $("#captain-alert").hide();
+      $(".captain-alert").hide();
     };
   }
 }
@@ -211,187 +199,6 @@ function errorSlide(eDivName, eMessageDiv, errorMessage) {
   $(eDivName).slideDown();
 }
 
-async function checkAccount() {
-  const email = $("#captain-email").val();
-  $.ajax({
-    url: "https://muslimathleticassociation.org:3001/api/getPersonRegistrations",
-    data: { email: email },
-  }).done((res) => {
-    console.log(res);
-    let data = res.data;
-    let msg = res.error;
-    let success = res.success;
-    if (success) {
-      res.data.program;
-    }
-  });
-}
-
-async function createCaptainAccount() {
-  const email = $("#captain-email").val();
-  const password = $("#captain-password").val();
-  const first_name = $("#captain-first_name").val();
-  const last_name = $("#captain-last_name").val();
-  const phone = $("#captain-phone").val();
-  const birthday = $("#captain-birthday").val();
-  let person;
-
-  if (password.length < 8) {
-    errorSlide(
-      "#captain-alert",
-      "#captain-alert-message",
-      "Password must be atleast 8 characters long"
-    );
-    return;
-  }
-
-  console.log(email, password);
-
-  $.ajax({
-    url: "https://muslimathleticassociation.org:3001/api/addPerson",
-    data: {
-      email: email,
-      first_name: first_name,
-      last_name: last_name,
-      phone: phone,
-      birthday: birthday,
-      gender: "male",
-    },
-    type: "POST",
-    dataType: "text json",
-  })
-    .done((result) => {})
-    .catch((result) => {
-      console.log(result);
-      if (result.responseJSON.ecode == 1) {
-        createFirebaseAccount(email, password);
-        return;
-      }
-      errorSlide(
-        "#captain-alert",
-        "#captain-alert-message",
-        result.responseJSON.error
-      );
-    });
-}
-
-async function createFirebaseAccount(email, password) {
-  firebase
-    .auth()
-    .createUserWithEmailAndPassword(email, password)
-    .then((userCredential) => {
-      console.log(userCredential);
-      var user = userCredential.user;
-      return user.getIdToken().then((idToken) => {
-        console.log(idToken);
-        return fetch("https://muslimathleticassociation.org:3001/api/login", {
-          method: "POST",
-          headers: {
-            Accept: "application/json",
-            "Content-Type": "application/json",
-          },
-          credentials: "include",
-          body: JSON.stringify({
-            idToken,
-            email: email,
-          }),
-        }).then(() => {
-          $("#create-captain-account").hide();
-          $(".create-team").show();
-          $("#captain-alert").hide();
-        });
-      });
-    })
-    .then(() => {
-      return firebase.auth().signOut();
-    })
-    .catch((error) => {
-      var errorCode = error.code;
-      var errorMessage = error.message;
-      console.log(errorCode);
-      console.log(errorMessage);
-      if (error.code == "auth/email-already-in-use") {
-        login(email, password);
-        return;
-      }
-      errorSlide("#captain-alert", "#captain-alert-message", errorMessage);
-    });
-}
-
-async function login(email, password) {
-  firebase
-    .auth()
-    .signInWithEmailAndPassword(email, password)
-    .then(({ user }) => {
-      return user.getIdToken().then((idToken) => {
-        console.log(idToken);
-        return fetch("https://muslimathleticassociation.org:3001/api/login", {
-          method: "POST",
-          headers: {
-            Accept: "application/json",
-            "Content-Type": "application/json",
-          },
-          credentials: "include",
-          body: JSON.stringify({
-            idToken,
-            email: email,
-          }),
-        }).then(() => {
-          $("#create-captain-account").hide();
-          $(".create-team").show();
-          $("#captain-alert").hide();
-        });
-      });
-    })
-    .then(() => {
-      return firebase.auth().signOut();
-    })
-    .catch((err) => {
-      console.log(err.message);
-      errorSlide("#captain-alert", "#captain-alert-message", err.message);
-    });
-}
-
-function createTeam() {
-  let cookies = getCookieValues();
-  const team = $("#team-name").val();
-  console.log(cookies);
-  let p = cookies.person_id;
-  if (team.length < 3) {
-    errorSlide(
-      "#captain-alert",
-      "#captain-alert-message",
-      "Team name must be atleast 3 characters long"
-    );
-    return;
-  }
-  $.ajax({
-    url: "https://muslimathleticassociation.org:3001/api/team/create",
-    data: {
-      person_id: p,
-      team_name: team,
-      subscription: 1,
-      team_capacity: 12,
-      datetime: Date.now(),
-    },
-    type: "POST",
-    dataType: "text json",
-  })
-    .done((result) => {
-      console.log(result);
-      $("#register-team-button").slideUp();
-      errorSlide("#captain-alert", "#captain-alert-message", result.error);
-    })
-    .catch((result) => {
-      console.log(result);
-      errorSlide(
-        "#captain-alert",
-        "#captain-alert-message",
-        result.responseJSON.error
-      );
-    });
-}
-
 function getCookieValues() {
   str = document.cookie.split("; ");
   var result = {};
@@ -400,4 +207,45 @@ function getCookieValues() {
     result[cur[0]] = cur[1];
   }
   return result;
+}
+
+async function getTeams(colors) {
+  let dropdown = $("#team_name");
+  let colors_dropdown = $("#jersey_color");
+  // var colors was defined when the document loaded.
+  dropdown.empty();
+  dropdown.append(
+    $("<option></option>").attr("value", "").text("Choose your team")
+  );
+  let competition = "Gaurd Up League (Men's)";
+  await apiGET(`/${competition.split(" ").join("%20")}/getTeams`)
+    .then((res) => {
+      teams = [];
+      picked_colors = [];
+      for (var team = 0; team < res.data.length; team++) {
+        teams.push(res.data[team].team_name);
+        picked_colors.push(res.data[team].color);
+        console.log(res.data[team]);
+      }
+      teams.sort();
+      for (var team = 0; team < teams.length; team++) {
+        dropdown.append(
+          $("<option></option>").attr("value", teams[team]).text(teams[team])
+        );
+      }
+      console.log(picked_colors);
+      for (var color = 0; color < colors.length; color++) {
+        if (picked_colors.indexOf(colors[color]) == -1) {
+          console.log(colors[color]);
+          colors_dropdown.append(
+            $("<option></option>")
+              .attr("value", colors[color])
+              .text(colors[color])
+          );
+        }
+      }
+    })
+    .catch((res) => {
+      console.log("Could not fetch teams.", res);
+    });
 }
