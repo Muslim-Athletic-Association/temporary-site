@@ -168,12 +168,18 @@ async function createTeam2() {
   };
   // We should probably ensure that the captains is 18+ too
   if (registration_validation(captainInput)) {
-    return await apiPOST("/team/create", captainInput).then((err) => {
+    return await apiPOST("/team/create", captainInput).then((res) => {
       $("#alert-message").html(
-        `${err.error} <br> Phone or Text 416-556-6718 or Email info@maaweb.org if you think there is an issue.`
+        `${res.error} <br> Phone or Text 416-556-6718 or Email info@maaweb.org if you think there is an issue.`
       );
-      $("#alert").slideDown();
-      return false;
+      let returning = $("#captain-attendance").val();
+      if (res.success && returning) {
+        window.location =
+          "https://checkout.square.site/merchant/MLX4BNZVQWGK4/checkout/OJDNT6YTB4ESJXOZDHUL5KDU";
+      } else {
+        window.location =
+          "https://checkout.square.site/merchant/MLX4BNZVQWGK4/checkout/2XPWG2VXYRNORLXOIFT63GSL";
+      }
     });
   }
 }
