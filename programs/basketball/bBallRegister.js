@@ -1,10 +1,11 @@
-const API_URL = "https://muslimathleticassociation.org:3001/api"; // This should be an env variable.
+const API_URL = "http://localhost:3001/api"; // This should be an env variable.
 
 async function apiPOST(path, body = {}) {
   return await $.ajax({
     url: API_URL + path,
     type: "POST",
     data: body,
+    cache: false,
     dataType: "text json",
   })
     .done((res) => {
@@ -57,6 +58,13 @@ $(document).ready(async function () {
     "BEIGE",
   ];
   colors.sort();
+  let colors_dropdown = $("#jersey_color");
+  for (var color = 0; color < colors.length; color++) {
+    console.log(colors[color]);
+    colors_dropdown.append(
+      $("<option></option>").attr("value", colors[color]).text(colors[color])
+    );
+  }
   await getTeams(colors);
   setup_alerts();
   $("#captain-alert").hide();
@@ -253,6 +261,9 @@ async function getTeams(colors) {
         );
       }
       console.log(picked_colors);
+      if (picked_colors) {
+        colors_dropdown.empty();
+      }
       for (var color = 0; color < colors.length; color++) {
         if (picked_colors.indexOf(colors[color]) == -1) {
           console.log(colors[color]);
