@@ -56,13 +56,13 @@ iframe {
   box-sizing: border-box;
   text-decoration: none;
   padding: 10px;
-  border-radius: 10px;
+  border-radius: 5px;
   border: 0px #000000 solid;
   border-top: 1px #000000 solid;
   border-bottom: 1px #000000 solid;
   color: #ffffff;
-  background: #002350;
-  margin: 0px 0px 20px 10px;
+  background: #294936;
+  /* margin: 0px 0px 20px 0px; */
 }
 
 @media (max-width: 992px) {
@@ -72,7 +72,7 @@ iframe {
 }
 
 .payment-button:hover {
-  background: #294936;
+  background: #002350;
   color: white;
 }
 
