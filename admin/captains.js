@@ -36,8 +36,7 @@ async function apiGET(path) {
 
 // The above code is also in utils.js and should be replaced by that file when we figure out imports.
 
-async function getTeams() {
-    let competition = "Gaurd Up League (Men's)";
+async function getTeams(competition) {
     return await apiGET(`/${competition.split(" ").join("%20")}/getCaptains`)
         .then((res) => {
             return res;
@@ -48,8 +47,8 @@ async function getTeams() {
         });
 }
 
-async function CreateTableFromJSON() {
-    var gt = await getTeams();
+async function CreateTableFromJSON(competition) {
+    var gt = await getTeams(competition);
     if (gt == false) {
         return false;
     }
