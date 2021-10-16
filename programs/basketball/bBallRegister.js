@@ -274,6 +274,8 @@ async function getTeams(colors) {
           );
         }
       }
+      let spots = 10 - teams.length;
+      $(".spots").text(spots);
     })
     .catch((res) => {
       console.log("Could not fetch teams.", res);

@@ -1176,9 +1176,9 @@ hr {
 }
 
 .img-text-subheader {
-  color: white;
+  color: #002350;
   display: inline-block;
-  background: #002350;
+  background: #eeeeee;
   padding: 5px;
   /* border-bottom-right-radius: 5px; */
   /* border-bottom-left-radius: 5px; */
