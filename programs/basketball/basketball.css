@@ -151,3 +151,46 @@ h4 {
         display: none;
     }
 }
+
+.captain-alert,
+.player-alert {
+    opacity: 1;
+    transition: opacity 0.6s; /* 600ms to fade out */
+}
+
+/* The alert message box */
+.captain-alert,
+.player-alert {
+    padding: 20px;
+    background-color: #294936; /* Red */
+    color: white;
+    margin: 15px 0;
+}
+
+/* The close button */
+.player-closebtn,
+.captain-closebtn {
+    margin-left: 15px;
+    color: white;
+    font-weight: bold;
+    float: right;
+    font-size: 22px;
+    line-height: 20px;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+/* When moving the mouse over the close button */
+.player-closebtn:hover,
+.captain-closebtn:hover {
+    color: black;
+}
+
+.spots-fetched {
+    width: fit-content;
+    padding: 5px;
+    background-color: #f1f1f1;
+    color: #524d9f;
+    float: right;
+    font-weight: 600;
+}

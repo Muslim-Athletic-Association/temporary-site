@@ -110,8 +110,11 @@
             <div class="container justify-content-md-center">
                 <div class="row container">
                     <div class="col-xs-6" style="margin-bottom: 20px;">
-                        <h4>MAA Guard Up Ball League</h4>
+                        <h4>MAA Basketball League</h4>
                             <br />
+                            <div class="container">
+                                <div class="spots"></div>
+                            </div>
                             <p>Brush off the dust on your ball shoes and lace up. It's time.</p>
                             <p> 
                                 We've been waiting to roll this one out for a while. Conquer the court in our 5v5 baskebtall league.
@@ -196,10 +199,9 @@
         <div class="container">
             <a href="https://checkout.square.site/merchant/MLX4BNZVQWGK4/checkout/2XPWG2VXYRNORLXOIFT63GSL">
                 <button class="payment-button">
-                Registered but haven't paid? Click here to make the team payment.</button>
+                Registered but haven't paid? Click here to make your individual payment.</button>
             </a>
         </div>
-        <div class="container spots"></div>
         <section>
             <div class="program-register container" id="program-register">  
       
@@ -210,7 +212,7 @@
               <div class="form-row collapse" id="captainForm">
                   
                   <div class="form-row container" id="create-captain-account">
-                  <div class="section-title instruction"><h2>Only captains are responsible for creating a team and payments.</h2></div>
+                  <div class="section-title instruction"><h2>Only captains are responsible for creating a team.</h2></div>
                   <br>
                   <div class="col-lg-4 col-md-6 form-group">
                     <label>Team Name</label>
@@ -268,25 +270,25 @@
                   </div>
                   <div class="container">
                     <div class="container terms-sign">
-                        <input type="checkbox" class="term-check" id="agreement" required="" name="terms">
+                        <input type="checkbox" class="captain-term-check" id="agreement" required="" name="terms">
                         <label for="terms"> I have read and agree to all regulations explicitly
                             mentioned in the <a id="waiver" href="../../assets/waivers/BasketballMens.pdf">liability waiver</a>.
                         </label>
                         <br />
-                        <input type="checkbox" class="term-check" id="recieve-emails" name="terms" checked="true">
+                        <input type="checkbox" class="captain-term-check" id="recieve-emails" name="terms" checked="true">
                         <label for="terms"> I would like to recieve updates and offers from MAA and it's sponsors.
                         </label>
                     </div>
                 </div>
           <div class="text-center container">
-              <button class="btn-menu" type="submit" onclick="createTeam2()">Register and Create a Team</button>
+              <button class="btn-menu" type="submit" onclick="register('captain')">Register and Create a Team</button>
           </div>
       
           </div>
           <div class="container">
-              <div class="container captain-alert" id="alert">
-                <span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span>
-                <div id="alert-message"></div>
+              <div class="container player-alert" id="captain-alert">
+                <span class="captain-closebtn" onclick="this.parentElement.style.display='none';">&times;</span>
+                <div id="captain-alert-message"></div>
               </div>
             </div>
               </div>
@@ -297,13 +299,79 @@
                 <button class="btn btn-register btn-block btn-lg"  data-toggle="collapse" data-target="#playerForm" aria-expanded="true">REGISTER AS A PLAYER <i class="fas fa-chevron-down accordion-header-icon" aria-hidden="true"></i></button>
                 
                  <div class="form-row collapse" id="playerForm">
-                  <div class="container">
-                  <p>
-                      Player registration and waivers have not yet been released.
-                      When the time comes, players should only register for their captain's team.
-                      Player registration will open on October 18th.
-                  </p>
+                   <div class="form-row container" id="create-player-account">
+                  <div class="section-title instruction"><h2>Register for your captain's team. All players are responsible for their own payments.</h2></div>
+                  <br>
+                  <div class="col-lg-4 col-md-6 form-group">
+                    <label>Team Name</label>
+                    <select type="text" name="player-team-name" class="form-control" id="player-team-name" placeholder="No"
+                    data-rule="minlen:1" data-msg="Please enter at least 1 chars">
+                      <option selected>Select your team</option>
+                    </select>
+                </div>
+                  <div class="col-lg-4 col-md-6 form-group">
+                      <label>First Name</label>
+                      <input type="text" name="player-first_name" class="form-control" id="player-first_name"
+                          placeholder="Your First Name" data-rule="minlen:1" data-msg="Please enter at least 1 chars" required/>
+                      <div class="validate"></div>
                   </div>
+                  <div class="col-lg-4 col-md-6 form-group">
+                      <label>Last Name</label>
+                      <input type="text" name="player-last_name" class="form-control" id="player-last_name" placeholder="Your Last Name"
+                          data-rule="minlen:1" data-msg="Please enter at least 1 chars" required/>
+                      <div class="validate"></div>
+                  </div>
+                  <div class="col-lg-4 col-md-6 form-group">
+                      <label>Email</label>
+                      <input type="email" class="form-control" name="player-email" id="player-email" placeholder="Your Email"
+                          data-rule="email" data-msg="Please enter a valid email" required/>
+                      <div class="validate"></div>
+                  </div>
+                  <div class="col-lg-4 col-md-6 form-group">
+                      <label>Phone</label>
+                      <input type="text" class="form-control" name="player-phone" id="player-phone" placeholder="Your Phone"
+                          data-rule="minlen:10" data-msg="Please enter a valid phone number" required />
+                      <div class="validate"></div>
+                  </div>
+                  <div class="col-lg-4 col-md-6 form-group">
+                      <label>Birthday (yyyy-mm-dd)</label>
+                      <input type="date" class="form-control mycustominput" name="player-birthday" id="player-birthday"
+                          placeholder="yyyy-mm-dd" required min="1920-01-01" max='2022-01-01'
+                          data-msg="Please enter a valid birthday" />
+                      <div class="validate"></div>
+                  </div>
+                  <div class="col-lg-4 col-md-6 form-group">
+                    <label>Did you attend our Guard up Tournament?</label>
+                    <select type="text" name="team_name" class="form-control" id="player-attendance" placeholder="No"
+                    data-rule="minlen:1" data-msg="Please enter at least 1 chars">
+                      <option selected>No</option>
+                      <option>Yes</option>
+                    </select>
+                    <div class="validate"></div>
+                  </div>
+                  <div class="container">
+                    <div class="container terms-sign">
+                        <input type="checkbox" class="player-term-check" id="agreement" required="" name="terms">
+                        <label for="terms"> I have read and agree to all regulations explicitly
+                            mentioned in the <a id="waiver" href="../../assets/waivers/BasketballMens.pdf">liability waiver</a>.
+                        </label>
+                        <br />
+                        <input type="checkbox" class="player-term-check" id="recieve-emails" name="terms" checked="true">
+                        <label for="terms"> I would like to recieve updates and offers from MAA and it's sponsors.
+                        </label>
+                    </div>
+                </div>
+          <div class="text-center container">
+              <button class="btn-menu" type="submit" onclick="register('player')">Register</button>
+          </div>
+      
+          </div>
+          <div class="container">
+              <div class="container player-alert" id="player-alert">
+                <span class="player-closebtn" onclick="this.parentElement.style.display='none';">&times;</span>
+                <div id="player-alert-message"></div>
+              </div>
+            </div>
               </div>
                       
               </div>
