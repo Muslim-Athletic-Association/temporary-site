@@ -75,13 +75,13 @@ iframe {
 }
 
 .league-hero {
-    margin-top: 80px;
+    /* margin-top: 80px; */
     margin-bottom: 20px;
     background: linear-gradient(rgba(0, 0, 0, 0.151), rgba(0, 0, 0, 0.76)),
         url("../../assets/img/basketball/tipOff.png") center center;
     background-size: cover;
     position: relative;
-    height: 75vh;
+    height: 100vh;
     border-bottom: solid 0.5px #000000;
 }
 
@@ -147,16 +147,7 @@ h4 {
         display: none;
     }
 
-    /* #guardUpTournament_video{
-    display: none;
-  } */
-    /* .league-hero {
-    margin-top: 0px;
-    background: linear-gradient(rgba(0, 0, 0, 0.151), rgba(0, 0, 0, 0.76)), url("../../assets/img/basketball/tipOff.png") center center;
-    background-size: cover;
-    position: relative;
-    height: 75vh;
-    margin-bottom: -50px;
-    border-bottom: solid 0.5px #000000;
-  } */
+    .arrows {
+        display: none;
+    }
 }
