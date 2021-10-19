@@ -36,24 +36,37 @@ async function apiGET(path) {
 
 // The above code is also in utils.js and should be replaced by that file when we figure out imports.
 
-async function getTeams(competition) {
-    return await apiGET(`/${competition.split(" ").join("%20")}/getCaptains`)
+async function getCaptains(competition) {
+    let json = await apiGET(`/${competition.split(" ").join("%20")}/getCaptains`)
         .then((res) => {
             return res;
         })
         .catch((res) => {
-            console.log("Could not fetch teams.", res);
+            console.log("Could not fetch captains.", res);
             return false;
         });
+    await CreateTableFromJSON(json);
 }
 
-async function CreateTableFromJSON(competition) {
-    var gt = await getTeams(competition);
+async function getPlayers(competition) {
+    let json = await apiGET(`/${competition.split(" ").join("%20")}/getPlayers`)
+        .then((res) => {
+            return res;
+        })
+        .catch((res) => {
+            console.log("Could not fetch players.", res);
+            return false;
+        });
+    await CreateTableFromJSON(json);
+}
+
+async function CreateTableFromJSON(json) {
+    let gt = json;
     if (gt == false) {
         return false;
     }
     let captains = gt.data;
-    console.log("???");
+
     // EXTRACT VALUE FOR HTML HEADER.
     // ('Book ID', 'Book Name', 'Category' and 'Price')
     var col = [];

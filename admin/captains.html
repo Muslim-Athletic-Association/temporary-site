@@ -25,12 +25,17 @@
     <body>
         <input
             type="button"
-            onclick="CreateTableFromJSON('Gaurd Up League (Men\'s)')"
+            onclick="getCaptains('Gaurd Up League (Men\'s)')"
             value="Get Basketball League Captains"
         />
         <input
             type="button"
-            onclick="CreateTableFromJSON('Men\'s League')"
+            onclick="getPlayers('Gaurd Up League (Men\'s)')"
+            value="Get Basketball League Players"
+        />
+        <input
+            type="button"
+            onclick="getCaptains('Men\'s League')"
             value="Get Soccer Captains"
         />
         <p id="showData"></p>
