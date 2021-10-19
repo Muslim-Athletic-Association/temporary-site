@@ -5,9 +5,9 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="theme-color" content="#000000" />
-    <meta name="description" content="Register for our Men's Soccer League" />
-    <meta property="og:image" content="../../assets/img/mensSoccer/Corner.jpg" />
-    <title>Soccer Registration - MAA</title>
+    <meta name="description" content="Register for our Men's soccer League" />
+    <meta property="og:image" content="../../assets/img/soccer/metal-soccer.jpg" />
+    <title>soccer Registration - MAA</title>
     <meta content="" name="descriptison">
     <meta content="" name="keywords">
 
@@ -31,15 +31,6 @@
     <link href="../../assets/vendor/venobox/venobox.css" rel="stylesheet">
     <link href="../../assets/vendor/aos/aos.css" rel="stylesheet">
 
-    <!-- Firebase files -->
-    <script
-        src="https://www.gstatic.com/firebasejs/7.14.1/firebase-app.js"
-        defer
-    ></script>
-    <script
-        src="https://www.gstatic.com/firebasejs/7.14.1/firebase-auth.js"
-        defer
-    ></script>
     <script
         src="https://cdn.jsdelivr.net/npm/js-cookie@rc/dist/js.cookie.min.js"
         defer
@@ -48,6 +39,11 @@
     <!-- Template Main CSS File -->
     <link href="../../assets/css/colorRevamp.css" rel="stylesheet">
     <link href="../../assets/css/register.css" rel="stylesheet">
+    <link href="./soccer.css" rel="stylesheet">
+
+    <script href="../../node_modules/axios/dist/axios.min.js"> </script>
+    <script href="../../assets/js/utils.js"> </script>
+
 </head>
 
 <body>
@@ -75,12 +71,19 @@
     <!-- End Header -->
 
     <!-- ======= Hero Section ======= -->
-    <section id="" class="soccer-hero d-flex align-items-center">
-        <div class="container position-relative text-center text-lg-left" data-aos="zoom-in" data-aos-delay="100">
+    <section id="" class="league-hero d-flex align-items-center video_bkg">
+            <video autoplay muted loop playsinline id="guardUpTournament_video">
+                <source src="../../assets/mp4/maa_soccer.mp4" type="video/mp4">
+                <!-- <source src="movie.ogg" type="video/ogg"> -->
+            Your browser does not support the video tag.
+            </video>
+            <div class="vid_overlay">
+            </div>
+        <div class="container video-content position-relative text-center text-lg-left" data-aos="zoom-in" data-aos-delay="100">
             <div class="row">
                 <div class="col-sm-8">
                     <div>
-                        <h2 class="img-text-subheader">Soccer Registration</h2>
+                        <h2 class="img-text-subheader">League Registration</h2>
                     </div>
                     <div class="btns">
                         <a id="register-here" class="btn-menu" href="#program-register">Register</a>
@@ -103,111 +106,24 @@
 
     <!-- End Hero -->
     <main>
-      <div class="program-register container" id="program-register">
-        <div className="section-title">
-            <!-- <h4>Registration</h4> -->
-            <p>Please note that submitting duplicate emails will not record new information. A person's identity
-                will be tied to their email and phone number. All emails must be unique.</p>
-            <div style="display:inline-block; font-size:10px;">Birthday values do not currently work on <strong>safari</strong>
-                browsers, we will look into the situation.</div>
-        </div>
-        <br>
-
-        <div class="form-group">
-          <button class="btn btn-register btn-outline-info btn-block btn-lg" data-toggle="collapse" data-target="#captainForm" aria-expanded="true">REGISTER A NEW TEAM (CAPTAINS ONLY)</button>              
-        
-        
-        <div class="form-row collapse" id="captainForm">
-            <div class="single-input create-team">
-                <!-- <div class="form-group"> -->
-                    <label>Team Name</label>
-                    <input type="text" name="team-name" class="form-control" id="team-name" placeholder="Your team name"
-                        data-rule="minlen:3" data-msg="Please enter at least 1 chars" required />
-                    <div class="validate"></div>
-                <!-- </div> -->
-                <div class="text-center">
-                    <button class="btn-menu" type="submit" id="register-team-button" onclick="createTeam()">Create Team</button>
-                </div>
-            </div>
-            <div class="form-row container" id="create-captain-account">
-            <div class="section-title instruction"><h2>Captains must create an account before creating a team.</h2></div>
-            <br>
-            <div class="col-lg-4 col-md-6 form-group">
-                <label>First Name</label>
-                <input type="text" name="captain-first_name" class="form-control" id="captain-first_name"
-                    placeholder="Your First Name" data-rule="minlen:1" data-msg="Please enter at least 1 chars" required/>
-                <div class="validate"></div>
-            </div>
-            <div class="col-lg-4 col-md-6 form-group">
-                <label>Last Name</label>
-                <input type="text" name="last_name" class="form-control" id="captain-last_name" placeholder="Your Last Name"
-                    data-rule="minlen:1" data-msg="Please enter at least 1 chars" required/>
-                <div class="validate"></div>
-            </div>
-            <div class="col-lg-4 col-md-6 form-group">
-                <label>Email</label>
-                <input type="email" class="form-control" name="captain-email" id="captain-email" placeholder="Your Email"
-                    data-rule="email" data-msg="Please enter a valid email" required/>
-                <div class="validate"></div>
-            </div>
-            <div class="col-lg-4 col-md-6 form-group">
-                <label>Phone</label>
-                <input type="text" class="form-control" name="captain-phone" id="captain-phone" placeholder="Your Phone"
-                    data-rule="minlen:10" data-msg="Please enter a valid phone number" required />
-                <div class="validate"></div>
-            </div>
-            <div class="col-lg-4 col-md-6 form-group">
-                <label>Birthday (mm/dd/yyyy)</label>
-                <input type="date" class="form-control mycustominput" name="captain-birthday" id="captain-birthday"
-                    placeholder="mm/dd/yyyy" required min="1920-01-01" max='2022-01-01'
-                    data-msg="Please enter a valid birthday" />
-                <div class="validate"></div>
-            </div>
-            <div class="col-lg-4 col-md-6 form-group">
-                <label>Password</label>
-                <input type="password" class="form-control" name="captain-password" id="captain-password" placeholder="Enter a password"
-                    data-rule="minlen:8" minlength="8" required/>
-                <div class="validate"></div>
-            </div>
-    
-    <div class="text-center container">
-        <button class="btn-menu" type="submit" onclick="createCaptainAccount()">Create an account</button>
-    </div>
-
-    </div>
-    <div class="container">
-        <div class="container captain-alert" id="captain-alert">
-          <span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span>
-          <div id="captain-alert-message"></div>
-        </div>
-      </div>
-        </div>
-
-      </div>
-
-        <div class="form-group">
-          <button class="btn btn-register btn-outline-info btn-block btn-lg"  data-toggle="collapse" data-target="#playerForm" aria-expanded="true">REGISTER AS A PLAYER <i class="fas fa-chevron-down accordion-header-icon" aria-hidden="true"></i></button>
-          
-           <div class="form-row collapse" id="playerForm">
-            <div class="container">
-            <p>Not available yet. We are only doing team registration for the time being. Keep an eye out on our social media for when individual registration opens.</p>
-            </div>
-        </div>
-                
-              </div>
         <section class="collaborations" class="specials">
             <div class="container justify-content-md-center">
                 <div class="row container">
-                    <div class="container col-xs-6" style="margin-bottom: 20px;">
-                        <h4>MAA Men's Soccer League Summer 2021</h4>
-                        <br />
-                        <p>We've always had untapped talent within our community, now we can let it shine.</p>
-                        <p>This league caters to the entire community. We value teamwork, ability and respect.
-                            Be the best by competing for the top spot in our round robin league sponsored by
-                            Penny Appeal Canada. 
-                        </p>
-                        <p>Register now! Show us what you've got.
-                        </p>
+                    <div class="col-xs-6" style="margin-bottom: 20px;">
+                        <h4>MAA soccer League</h4>
+                            <br />
+                            <div class="container">
+                                <div class="spots"></div>
+                            </div>
+                            <p>Brush off the dust on your ball shoes and lace up. It's time.</p>
+                            <p> 
+                                We've been waiting to roll this one out for a while. Conquer the court in our 5v5 baskebtall league.
+                                We're aiming to be the highest quality ball community you've ever seen. Will ever see.
+                                
+                                Be the Kings of the court starting October 23rd. Make your own team and show us what you've got. 
+                            </p>
+                            <p>Register now below.
+                            </p>
                     </div>
                     <div class="col-xs-6">
                         <div class="container aos-init aos-animate" data-aos="fade-up">
@@ -225,10 +141,10 @@
                                             <a class="nav-link" data-toggle="tab" href="#tab-2">Masrawy</a>
                                         </li>
                                         <li class="nav-item">
-                                            <a class="nav-link" data-toggle="tab" href="#tab-3">Octacon Construction</a>
+                                            <a class="nav-link" data-toggle="tab" href="#tab-3">Umrah Companions</a>
                                         </li>
                                         <li class="nav-item">
-                                            <a class="nav-link" data-toggle="tab" href="#tab-4">Soona Realty</a>
+                                            <a class="nav-link" data-toggle="tab" href="#tab-4">Jeoyco</a>
                                         </li>
                                     </ul>
                                 </div>
@@ -238,7 +154,7 @@
                                             <div class="row">
                                                 <div class="span4"></div>
                                                 <div class="col-lg-8 details order-2 order-lg-1">
-                                                    <img class="collab-logo" src="../../assets/img/logos/external/pennyAppealOrange.png" />
+                                                    <a href="https://pennyappeal.ca/"><img class="collab-logo" src="../../assets/img/logos/external/pennyAppealOrange.png" /></a>
                                                 </div>
                                                 <div class></div>
                                             </div>
@@ -246,7 +162,7 @@
                                         <div class="tab-pane" id="tab-2">
                                             <div class="row">
                                                 <div class="col-lg-8 details order-2 order-lg-1">
-                                                    <a href="https://maplerootacademy.com/"><img class="collab-logo"
+                                                    <a href="https://masrawykitchen.com/"><img class="collab-logo"
                                                             src="../../assets/img/logos/external/Masrawy.png"></a>
                                                 </div>
                                             </div>
@@ -254,9 +170,9 @@
                                         <div class="tab-pane" id="tab-3">
                                             <div class="row">
                                                 <div class="col-lg-8 details order-2 order-lg-1">
-                                                    <a href="https://www.nisahomes.com/">
+                                                    <a href="https://umrahcompanions.com/">
                                                         <img class="collab-logo"
-                                                            src="../../assets/img/logos/external/Octacon_Construction.png">
+                                                            src="../../assets/img/logos/external/UCLogo.png">
                                                     </a>
                                                 </div>
                                             </div>
@@ -264,9 +180,9 @@
                                         <div class="tab-pane" id="tab-4">
                                             <div class="row">
                                                 <div class="col-lg-8 details order-2 order-lg-1">
-                                                    <a href="http://anatoliacentre.ca/">
+                                                    <a href="https://www.joeyco.com/">
                                                         <img class="collab-logo"
-                                                            src="../../assets/img/logos/external/soonaNoBackground.png">
+                                                            src="../../assets/img/logos/external/joeyLogo.png">
                                                     </a>
                                                 </div>
                                             </div>
@@ -279,8 +195,186 @@
                 </div>
             </div>
         </section>
-        
+
         <div class="container">
+            <a href="https://checkout.square.site/merchant/MLX4BNZVQWGK4/checkout/2XPWG2VXYRNORLXOIFT63GSL">
+                <button class="payment-button">
+                Registered but haven't paid? Click here to make your individual payment.</button>
+            </a>
+        </div>
+        <section>
+            <div class="program-register container" id="program-register">  
+      
+              <div class="form-group">
+                <button class="btn btn-register btn-block btn-lg" data-toggle="collapse" data-target="#captainForm" aria-expanded="true">REGISTER A NEW TEAM (CAPTAINS ONLY) <i class="fas fa-chevron-down accordion-header-icon" aria-hidden="true"></i></button>              
+              
+              
+              <div class="form-row collapse" id="captainForm">
+                  
+                  <div class="form-row container" id="create-captain-account">
+                  <div class="section-title instruction"><h2>Only captains are responsible for creating a team.</h2></div>
+                  <br>
+                  <div class="col-lg-4 col-md-6 form-group">
+                    <label>Team Name</label>
+                    <input type="text" name="team_name" class="form-control" id="captain-team-name"
+                        placeholder="Your Team Name" data-rule="minlen:1" data-msg="Please enter at least 1 chars" required/>
+                    <div class="validate"></div>
+                </div>
+                  <div class="col-lg-4 col-md-6 form-group">
+                      <label>First Name</label>
+                      <input type="text" name="captain-first_name" class="form-control" id="captain-first_name"
+                          placeholder="Your First Name" data-rule="minlen:1" data-msg="Please enter at least 1 chars" required/>
+                      <div class="validate"></div>
+                  </div>
+                  <div class="col-lg-4 col-md-6 form-group">
+                      <label>Last Name</label>
+                      <input type="text" name="captain-last_name" class="form-control" id="captain-last_name" placeholder="Your Last Name"
+                          data-rule="minlen:1" data-msg="Please enter at least 1 chars" required/>
+                      <div class="validate"></div>
+                  </div>
+                  <div class="col-lg-4 col-md-6 form-group">
+                      <label>Email</label>
+                      <input type="email" class="form-control" name="captain-email" id="captain-email" placeholder="Your Email"
+                          data-rule="email" data-msg="Please enter a valid email" required/>
+                      <div class="validate"></div>
+                  </div>
+                  <div class="col-lg-4 col-md-6 form-group">
+                      <label>Phone</label>
+                      <input type="text" class="form-control" name="captain-phone" id="captain-phone" placeholder="Your Phone"
+                          data-rule="minlen:10" data-msg="Please enter a valid phone number" required />
+                      <div class="validate"></div>
+                  </div>
+                  <div class="col-lg-4 col-md-6 form-group">
+                      <label>Birthday (yyyy-mm-dd)</label>
+                      <input type="date" class="form-control mycustominput" name="captain-birthday" id="captain-birthday"
+                          placeholder="yyyy-mm-dd" required min="1920-01-01" max='2022-01-01'
+                          data-msg="Please enter a valid birthday" />
+                      <div class="validate"></div>
+                  </div>
+                  <div class="col-lg-4 col-md-6 form-group">
+                    <label>Jersey Colour</label>
+                    <select type="text" name="team_name" class="form-control" id="jersey_color" placeholder="Color"
+                    data-rule="minlen:1" data-msg="Please enter at least 1 chars">
+                      <option disabled selected>Select a color</option>
+                    </select>
+                    <div class="validate"></div>
+                  </div>
+                  <div class="col-lg-4 col-md-6 form-group">
+                    <label>Did you attend our Guard up Tournament?</label>
+                    <select type="text" name="team_name" class="form-control" id="captain-attendance" placeholder="No"
+                    data-rule="minlen:1" data-msg="Please enter at least 1 chars">
+                      <option selected>No</option>
+                      <option>Yes</option>
+                    </select>
+                    <div class="validate"></div>
+                  </div>
+                  <div class="container">
+                    <div class="container terms-sign">
+                        <input type="checkbox" class="captain-term-check" id="agreement" required="" name="terms">
+                        <label for="terms"> I have read and agree to all regulations explicitly
+                            mentioned in the <a id="waiver" href="../../assets/waivers/soccerMens.pdf">liability waiver</a>.
+                        </label>
+                        <br />
+                        <input type="checkbox" class="captain-term-check" id="recieve-emails" name="terms" checked="true">
+                        <label for="terms"> I would like to recieve updates and offers from MAA and it's sponsors.
+                        </label>
+                    </div>
+                </div>
+          <div class="text-center container">
+              <button class="btn-menu" type="submit" onclick="register('captain')">Register and Create a Team</button>
+          </div>
+      
+          </div>
+          <div class="container">
+              <div class="container captain-alert" id="captain-alert">
+                <span class="captain-closebtn" onclick="this.parentElement.style.display='none';">&times;</span>
+                <div id="captain-alert-message"></div>
+              </div>
+            </div>
+              </div>
+      
+            </div>
+      
+              <div class="form-group">
+                <button class="btn btn-register btn-block btn-lg"  data-toggle="collapse" data-target="#playerForm" aria-expanded="true">REGISTER AS A PLAYER <i class="fas fa-chevron-down accordion-header-icon" aria-hidden="true"></i></button>
+                
+                 <div class="form-row collapse" id="playerForm">
+                   <div class="form-row container" id="create-player-account">
+                  <div class="section-title instruction"><h2>Register for your captain's team. All players are responsible for their own payments.</h2></div>
+                  <br>
+                  <div class="col-lg-4 col-md-6 form-group">
+                    <label>Team Name</label>
+                    <select type="text" name="player-team-name" class="form-control" id="player-team-name" placeholder="No"
+                    data-rule="minlen:1" data-msg="Please enter at least 1 chars">
+                      <option selected>Select your team</option>
+                    </select>
+                </div>
+                  <div class="col-lg-4 col-md-6 form-group">
+                      <label>First Name</label>
+                      <input type="text" name="player-first_name" class="form-control" id="player-first_name"
+                          placeholder="Your First Name" data-rule="minlen:1" data-msg="Please enter at least 1 chars" required/>
+                      <div class="validate"></div>
+                  </div>
+                  <div class="col-lg-4 col-md-6 form-group">
+                      <label>Last Name</label>
+                      <input type="text" name="player-last_name" class="form-control" id="player-last_name" placeholder="Your Last Name"
+                          data-rule="minlen:1" data-msg="Please enter at least 1 chars" required/>
+                      <div class="validate"></div>
+                  </div>
+                  <div class="col-lg-4 col-md-6 form-group">
+                      <label>Email</label>
+                      <input type="email" class="form-control" name="player-email" id="player-email" placeholder="Your Email"
+                          data-rule="email" data-msg="Please enter a valid email" required/>
+                      <div class="validate"></div>
+                  </div>
+                  <div class="col-lg-4 col-md-6 form-group">
+                      <label>Phone</label>
+                      <input type="text" class="form-control" name="player-phone" id="player-phone" placeholder="Your Phone"
+                          data-rule="minlen:10" data-msg="Please enter a valid phone number" required />
+                      <div class="validate"></div>
+                  </div>
+                  <div class="col-lg-4 col-md-6 form-group">
+                      <label>Birthday (yyyy-mm-dd)</label>
+                      <input type="date" class="form-control mycustominput" name="player-birthday" id="player-birthday"
+                          placeholder="yyyy-mm-dd" required min="1920-01-01" max='2022-01-01'
+                          data-msg="Please enter a valid birthday" />
+                      <div class="validate"></div>
+                  </div>
+                  <div class="col-lg-4 col-md-6 form-group">
+                    <label>Did you attend our Guard up Tournament?</label>
+                    <select type="text" name="team_name" class="form-control" id="player-attendance" placeholder="No"
+                    data-rule="minlen:1" data-msg="Please enter at least 1 chars">
+                      <option selected>No</option>
+                      <option>Yes</option>
+                    </select>
+                    <div class="validate"></div>
+                  </div>
+                  <div class="container">
+                    <div class="container terms-sign">
+                        <input type="checkbox" class="player-term-check" id="agreement" required="" name="terms">
+                        <label for="terms"> I have read and agree to all regulations explicitly
+                            mentioned in the <a id="waiver" href="../../assets/waivers/soccerMens.pdf">liability waiver</a>.
+                        </label>
+                        <br />
+                        <input type="checkbox" class="player-term-check" id="recieve-emails" name="terms" checked="true">
+                        <label for="terms"> I would like to recieve updates and offers from MAA and it's sponsors.
+                        </label>
+                    </div>
+                </div>
+          <div class="text-center container">
+              <button class="btn-menu" type="submit" onclick="register('player')">Register</button>
+          </div>
+      
+          </div>
+          <div class="container">
+              <div class="container player-alert" id="player-alert">
+                <span class="player-closebtn" onclick="this.parentElement.style.display='none';">&times;</span>
+                <div id="player-alert-message"></div>
+              </div>
+            </div>
+              </div>
+                      
+              </div>
         
         <div class="accordion-item">
 
@@ -293,21 +387,27 @@
             
             
             <div class="container collapse faq" id="FAQ1">
-                To be updated closer to season start
-            </div>
-        </div>
-        
-        <div class="accordion-item">
-
-            <div class="accordion-header">
-                <div class="accordion-header-title">
-                    <button class="btn btn-faq btn-block btn-lg" data-toggle="collapse" data-target="#FAQ2" aria-expanded="true">Government Regulations<i class="fas fa-chevron-down accordion-header-icon"></i></button>
+                <div class="section-title">
+                    <h2>
+                    Here's what you can expect at the league:
+                    </h2>
                 </div>
-                
-            </div>
-
-            <div class="container collapse faq" id="FAQ2">
-                To be updated closer to season start
+                <ul class="info-li">
+                    <li><i class="fa fa-soccer-ball-o list-icon"></i> 18+</li>
+                    <li><i class="fa fa-soccer-ball-o list-icon"></i> 5v5</li>
+                    <li><i class="fa fa-soccer-ball-o list-icon"></i> 8-10 players per team</li>
+                    <li><i class="fa fa-soccer-ball-o list-icon"></i> $200/player</li>
+                    <li><i class="fa fa-soccer-ball-o list-icon"></i> Free Jersey</li>
+                    <li><i class="fa fa-soccer-ball-o list-icon"></i> Competitive games</li>
+                    <li><i class="fa fa-soccer-ball-o list-icon"></i> Play offs</li>
+                    <li><i class="fa fa-soccer-ball-o list-icon"></i> All star event</li>
+                    <li><i class="fa fa-soccer-ball-o list-icon"></i> Videography</li>
+                    <li><i class="fa fa-soccer-ball-o list-icon"></i> Photography </li>
+                    <li><i class="fa fa-soccer-ball-o list-icon"></i> Highlights</li>
+                    <li><i class="fa fa-soccer-ball-o list-icon"></i> Stats </li>
+                    <li><i class="fa fa-soccer-ball-o list-icon"></i> Awards</li>
+                    <li><i class="fa fa-soccer-ball-o list-icon"></i> Refs</li>
+                </ul>
             </div>
         </div>
         
@@ -320,16 +420,42 @@
                 
             </div>
                 
-                <div class="container collapse faq" id="FAQ3">
-                    To be updated closer to season start
+            <div class="container collapse faq" id="FAQ3">
+                <div class="section-title">
+                    <h2>
+                    What is the format?
+                    </h2>
+                    <ul>
+                    <li><i class="fa fa-soccer-ball-o list-icon"></i> 10 teams in total </li>
+                    <li><i class="fa fa-soccer-ball-o list-icon"></i> 8-10 players per team </li>
+                    <li><i class="fa fa-soccer-ball-o list-icon"></i> Round Robin. </li>
+                    <li><i class="fa fa-soccer-ball-o list-icon"></i> 9 guaranteed games to determine seeding. </li>
+                    <li><i class="fa fa-soccer-ball-o list-icon"></i> Guarenteed play off seeding. </li>
+                    </ul>
+                </div>
+                <div class="section-title">
+                    <h2>
+                    Where is the tournament?
+                    </h2>
+                    <ul>
+                    <li><i class="fa fa-soccer-ball-o list-icon"></i> Trafalgar Park Community Center, Oakville.</li>
+                    </ul>
+                </div>
+                <div class="section-title">
+                    <h2>
+                    What time should I arrive?
+                    </h2>
+                    <ul>
+                    <li><i class="fa fa-soccer-ball-o list-icon"></i> Game time will vary every week between 6-11pm. </li>
+                    <li><i class="fa fa-soccer-ball-o list-icon"></i> Arrive 30 mins prior for registration and warm up. </li>
+                    </ul>
+                </div>
             </div>
         </div>
-            
-        </div>
         
         
         
-        
+    </section>
         
     </main>
 
