@@ -1,232 +1,169 @@
 // This file sends requests and handles dynamic displays for registration
+// import fv from "./formValidation";
 
-var programs = {};
-var program = {};
+var guardian = false;
 
-$(document).ready(function(){
-    getPrograms();
-    console.log(programs)
-    $('#infoForm').hide();
-    $(".checkout-payment").hide();
-    $("#programs").change(function() {
-        var waiver;
-        console.log($(this).val())
-        switch($(this).val()){
-            case "mens over 18 soccer league":
-                waiver = '../assets/waivers/soccerMensOver18.txt'
-                program = programs["mens over 18 soccer league"];
-                showForm();
-                break;
-            case "ramadan wellness program":
-                waiver = '../assets/waivers/sistersWellness.txt'
-                program = programs["ramadan wellness program"];
-
-                hideForm();
-                break;
-            case "active club":
-                waiver = '../assets/waivers/activeClubs.txt'
-                program = programs["active club"];
-                hideForm();
-                break;
-        }
-        $(".register-terms").attr('src', waiver);
-    });
-
+$(document).ready(function () {
+  hideGuardian();
+  $("#recieve-emails").prop("required", false);
+  setup_alerts();
+  $("#alert").hide();
+  $("#birthday").change(function () {
+    var age = getAge($(this).val());
+    if (age < 18) {
+      showGuardian();
+    } else {
+      hideGuardian();
+    }
+  });
 });
 
-function getPrograms(){
-    $.ajax({
-        url: "https://muslimathleticassociation.org:3001/api/programs/getPrograms",
-        method: "GET",
-        type: "https"
-    }).done((res) => {
-        programs = res;
-    })
-}
-
-function hideForm(){
-    $('#infoForm').hide(400);
-    $('#no-program').show(400);
-    $(".checkout-payment").hide();
-}
-
-function showForm(){
-    $('#infoForm').show(400);
-    $('#no-program').hide();
-    $(".checkout-payment").hide();
-}
-
-function showPayment(){
-    choice = $("#programs option:selected").html()
-    $("#programs option:selected").html(choice)
-    // Note: the above line is executed in order to return the contents of #programs back since .html() replaces the contents;
-    // $('#infoForm').hide(400);
-    $("#program-name-checkout").html(choice);
-    $("#program-price").html("$" + program.price);
-    $(".checkout-payment").show(400);
-}
-
-function validateProgram(){
-
-    console.log(formValid())
-    if (!formValid()){
-        console.log("Form inputs invalid")
-        return false;
-    }
-
-    if (program == {} || program == undefined){
-        console.log("Error! Program is empty.")
-        return false;
-    }
-
-    if ($("#terms").is(":checked")){
-        $.ajax({
-            url: "https://muslimathleticassociation.org:3001/api/validateRegistration/" + $("#programs").val() + "/" + $("#gender").val(),
-            method: "POST",
-            type: "https"
-        }).done((res) => {
-            if (res.valid == true){
-                console.log("Registration input is valid. User May continue registration.");
-                if (program.price > 0){
-                    console.log("Member must complete payment before registering.")
-                    showPayment();
-                } else {
-                    console.log("Registering a member for a free program.")
-                    register();
-                }
-            }
-        })
-    } else {
-        console.log("User must first read and accept the waiver.")
-    }
-}
-
-function register(){
-    $.ajax({
-        url: "https://muslimathleticassociation.org:3001/api/register",
-        method: "POST",
-        data:  {
-            fname: $("#firstName").val(),
-            lname: $("#lastName").val(),
-            phone: $("#phone").val(),
-            email: $("#email").val(),
-            birthday: $("#birthday").val(),
-            gender: $("#gender").val(),
-            program: $("#programs").val()
-        },
-        type: "https"
-    }).done((res) => {
-        console.log(res);
-        if (program.price > 0){
-            getCardNonce()
-        }
-    })
-}
-
-// onGetCardNonce is triggered when the "Pay" button is clicked
-function getCardNonce() {
-    // Don't submit the form until SqPaymentForm returns with a nonce
-    // event.preventDefault();
-
-    // Here is where we want to do some validation before we start a request for the nonce.
-    validateProgram();
-
-    // Request a nonce from the SqPaymentForm object
-    paymentForm.requestCardNonce();
-}
-paymentForm.build();
-
-function formValid(){
-      
-      var f = $("form.php-email-form").find('.form-group'),
-        ferror = false,
-        emailExp = /^[^\s()<>@,;:\/]+@\w[\w\.-]+\.[a-z]{2,}$/i;
-  
-      //Deal with inputs
-      f.children('input').each(function() { // run all inputs
-       
-        var i = $(this); // current input
-        var rule = i.attr('data-rule');
-  
-        if (rule !== undefined) {
-          var ierror = false; // error flag for current input
-          var pos = rule.indexOf(':', 0);
-          if (pos >= 0) {
-            var exp = rule.substr(pos + 1, rule.length);
-            rule = rule.substr(0, pos);
-          } else {
-            rule = rule.substr(pos + 1, rule.length);
-          }
-  
-          switch (rule) {
-            case 'required':
-              if (i.val() === '') {
-                ferror = ierror = true;
-              }
-              break;
-  
-            case 'minlen':
-              if (i.val().length < parseInt(exp)) {
-                ferror = ierror = true;
-              }
-              break;
-  
-            case 'email':
-              if (!emailExp.test(i.val())) {
-                ferror = ierror = true;
-              }
-              break;
-  
-            case 'checked':
-              if (! i.is(':checked')) {
-                ferror = ierror = true;
-              }
-              break;
-  
-            case 'regexp':
-              exp = new RegExp(exp);
-              if (!exp.test(i.val())) {
-                ferror = ierror = true;
-              }
-              break;
-          }
-          i.next('.validate').html((ierror ? (i.attr('data-msg') !== undefined ? i.attr('data-msg') : 'wrong Input') : '')).show('blind');
-        }
-      });
-
-      // Deal with textareas
-      f.children('textarea').each(function() { // run all inputs
-  
-        var i = $(this); // current input
-        var rule = i.attr('data-rule');
-  
-        if (rule !== undefined) {
-          var ierror = false; // error flag for current input
-          var pos = rule.indexOf(':', 0);
-          if (pos >= 0) {
-            var exp = rule.substr(pos + 1, rule.length);
-            rule = rule.substr(0, pos);
-          } else {
-            rule = rule.substr(pos + 1, rule.length);
-          }
-  
-          switch (rule) {
-            case 'required':
-              if (i.val() === '') {
-                ferror = ierror = true;
-              }
-              break;
-  
-            case 'minlen':
-              if (i.val().length < parseInt(exp)) {
-                ferror = ierror = true;
-              }
-              break;
-          }
-          i.next('.validate').html((ierror ? (i.attr('data-msg') != undefined ? i.attr('data-msg') : 'wrong Input') : '')).show('blind');
-        }
-      });
-      if (ferror) return false;
-      
-      return true;
+function getAge(dateString) {
+  var today = new Date();
+  var birthDate = new Date(dateString);
+  var age = today.getFullYear() - birthDate.getFullYear();
+  var m = today.getMonth() - birthDate.getMonth();
+  if (m < 0 || (m === 0 && today.getDate() < birthDate.getDate())) {
+    age--;
   }
+  return age;
+}
+
+function showGuardian() {
+  guardian = true;
+  $("#guardian-title").show(400);
+  $("#guardian-info").show(400);
+  $("#guardian-sign").show(400);
+  $("#guardian-terms").prop("required", true);
+  $("#guardian-phone").prop("required", true);
+  $("#guardian-email").prop("required", true);
+  $("#guardian-name").prop("required", true);
+}
+
+function hideGuardian() {
+  guardian = false;
+  $("#guardian-info").hide(400);
+  $("#guardian-title").hide(400);
+  $("#guardian-sign").hide(400);
+  $("#guardian-terms").prop("required", false);
+  $("#guardian-phone").prop("required", false);
+  $("#guardian-email").prop("required", false);
+  $("#guardian-name").prop("required", false);
+}
+
+function checkTerms() {
+  var terms = $(".term-check").get();
+  for (var i = 0; i < terms.length; i++) {
+    if ($(terms[i]).is(":visible") && $(terms[i]).is(":required")) {
+      if (!$(terms[i]).is(":checked")) {
+        console.log("Not all required terms have been checked.");
+        $("#alert-message").html(
+          "Please select all required consent checks. <br> Please contact us at info@maaweb.org if you think there is an issue."
+        );
+        $("#alert").slideDown();
+        return false;
+      }
+    }
+  }
+  return true;
+}
+
+function register(member) {
+  if (!checkTerms()) {
+    return false;
+  }
+
+  if ($("#first_name").val() == "" || $("#last_name").val() == "") {
+    $("#alert-message").html(
+      "Please fill in your first and last name." +
+        "<br> Please contact us at info@maaweb.org if you think there is an issue."
+    );
+    $("#alert").slideDown();
+    return false;
+  }
+
+  if (
+    $("#guardian-info").is(":visible") &&
+    ($("#guardian-name").val() == "" ||
+      $("#guardian-phone").val() == "" ||
+      $("#guardian-email").val() == "")
+  ) {
+    $("#alert-message").html(
+      "Please fill in your guardian information." +
+        "<br> Please contact us at info@maaweb.org if you think there is an issue."
+    );
+    $("#alert").slideDown();
+    return false;
+  }
+
+  var email_consent = $("#recieve-emails").is(":checked");
+  console.log(email_consent);
+  console.log(toString(email_consent));
+
+  $.ajax({
+    url: "https://muslimathleticassociation.org:3001/api/registration/temporary/subscribe",
+    data: {
+      first_name: $("#first_name").val(),
+      last_name: $("#last_name").val(),
+      phone: $("#phone").val(),
+      email: $("#email").val(),
+      birthday: $("#birthday").val(),
+      gender: "Female",
+      program: "Yoga",
+      payment: 0,
+      team_name: "",
+      datetime: new Date().toISOString().slice(0, 19).replace("T", " "),
+      subscription: 1,
+      consent: [
+        { given: "true", purpose: "Yoga Agreement" },
+        { given: email_consent, purpose: "Yoga Sponsor Contact" },
+      ],
+      guardian: {
+        email: $("#guardian-email").val(),
+        phone: $("#guardian-phone").val(),
+        full_name: $("#guardian-name").val(),
+      },
+    },
+    type: "POST",
+    dataType: "text json",
+  })
+    .done((data) => {
+      console.log(data);
+      console.log(data.error);
+      if (data.success == true) {
+        $("#alert-message").html(
+          data.error +
+            "<br> Please contact us at info@maaweb.org if you think there is an issue."
+        );
+        $("#alert").slideDown();
+        $("#register-button").hide();
+      } else {
+        $("#alert-message").html(
+          data.error +
+            "<br> Please contact us at info@maaweb.org if you think there is an issue."
+        );
+        $("#alert").slideDown();
+      }
+    })
+    .catch((error) => {
+      console.log("Registration failed.", error.responseJSON.error);
+      $("#alert-message").html(
+        error.responseJSON.error +
+          "<br> Please contact us at info@maaweb.org if you think there is an issue."
+      );
+      $("#alert").slideDown();
+    });
+}
+
+function setup_alerts() {
+  var close = document.getElementsByClassName("closebtn");
+  var i;
+
+  // Loop through all close buttons
+  for (i = 0; i < close.length; i++) {
+    // When someone clicks on a close button
+    close[i].onclick = function () {
+      $("#alert").hide();
+    };
+  }
+}
