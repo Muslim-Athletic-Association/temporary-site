@@ -144,7 +144,7 @@ function registration_validation(inputs, person) {
     values = Object.values(inputs);
     for (let v = 0; v < values.length; v++) {
         console.log(keys[v], values[v]);
-        if (!values[v]) {
+        if (!values[v] && !(person=="player" && keys[v] == "color")) {
             $(`#${person}-alert-message`).html(
                 `${keys[v]
                     .split("_")
